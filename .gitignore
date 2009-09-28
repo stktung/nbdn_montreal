@@ -12,7 +12,7 @@ _ReSharper.*
 *.swo
 local_properties.rb
 latest_package
-/artifacts
+artifacts
 /product/config/app.config.vista
 /product/config/app.config.xp
 /product/config/log4net.config.xml
