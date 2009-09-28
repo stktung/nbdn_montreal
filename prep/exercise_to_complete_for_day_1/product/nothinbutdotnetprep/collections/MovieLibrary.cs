@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using nothinbutdotnetprep.infrastructure;
 using nothinbutdotnetprep.infrastructure.extensions;
 
 namespace nothinbutdotnetprep.collections
 {
     public delegate bool MovieFilter(Movie movie);
+
 
     public class MovieLibrary
     {
@@ -45,34 +47,23 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
-            return all_movies_filtered_by(movie =>
-            {
-                return movie.production_studio == ProductionStudio.Pixar;
-            });
+
+            return all_movies_matching(movie =>
+                movie.production_studio == ProductionStudio.Pixar
+            );
         }
 
 
-        IEnumerable<Movie> all_movies_filtered_by(MovieFilter filter)
+        IEnumerable<Movie> all_movies_matching(Criteria<Movie> criteria)
         {
-            foreach (var movie in list_of_movies)
-            {
-                if (filter(movie))
-                {
-                    yield return movie;
-                }
-            }
+            return list_of_movies.all_items_matching(criteria);
         }
 
 
         public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
         {
-            foreach (var movie in list_of_movies)
-            {
-                if ((movie.production_studio == ProductionStudio.Pixar) || (movie.production_studio == ProductionStudio.Disney))
-                {
-                    yield return movie;
-                }
-            }
+            return all_movies_matching(item => item.production_studio == ProductionStudio.Pixar ||
+                                               item.production_studio == ProductionStudio.Disney);
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_ascending()
