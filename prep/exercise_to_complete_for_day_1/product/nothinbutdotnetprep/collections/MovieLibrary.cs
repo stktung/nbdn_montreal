@@ -4,6 +4,8 @@ using nothinbutdotnetprep.infrastructure.extensions;
 
 namespace nothinbutdotnetprep.collections
 {
+    public delegate bool MovieFilter(Movie movie);
+
     public class MovieLibrary
     {
         IList<Movie> list_of_movies;
@@ -43,14 +45,24 @@ namespace nothinbutdotnetprep.collections
 
         public IEnumerable<Movie> all_movies_published_by_pixar()
         {
+            return all_movies_filtered_by(movie =>
+            {
+                return movie.production_studio == ProductionStudio.Pixar;
+            });
+        }
+
+
+        IEnumerable<Movie> all_movies_filtered_by(MovieFilter filter)
+        {
             foreach (var movie in list_of_movies)
             {
-                if (movie.production_studio == ProductionStudio.Pixar)
+                if (filter(movie))
                 {
                     yield return movie;
                 }
             }
         }
+
 
         public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
         {
