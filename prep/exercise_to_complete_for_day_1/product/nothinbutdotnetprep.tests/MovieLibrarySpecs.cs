@@ -5,7 +5,6 @@ using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
-using MbUnit.Framework;
 using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.infrastructure.extensions;
 
@@ -110,6 +109,8 @@ namespace nothinbutdotnetprep.tests
                 all_movies.should_only_contain(first_movie, second_movie);
             };
         }
+
+                                            
 
         [Concern(typeof (MovieLibrary))]
         public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type : concern
