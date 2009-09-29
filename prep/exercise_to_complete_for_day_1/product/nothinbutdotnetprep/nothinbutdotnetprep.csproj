@@ -38,6 +38,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="collections\ProductionStudioRatingComparer.cs" />
     <Compile Include="infrastructure\ranges\InclusiveRange.cs" />
     <Compile Include="infrastructure\ranges\Range.cs" />
     <Compile Include="infrastructure\ranges\RangeWithNoUpperBound.cs" />
@@ -70,7 +71,11 @@
     <Compile Include="infrastructure\searching\OrCriteria.cs" />
     <Compile Include="infrastructure\searching\PropertyCriteria.cs" />
     <Compile Include="infrastructure\searching\Where.cs" />
+    <Compile Include="infrastructure\sorting\ChainedComparer.cs" />
+    <Compile Include="infrastructure\sorting\ComparerFactory.cs" />
+    <Compile Include="infrastructure\sorting\InverseComparer.cs" />
     <Compile Include="infrastructure\sorting\Order.cs" />
+    <Compile Include="infrastructure\sorting\PropertyComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
