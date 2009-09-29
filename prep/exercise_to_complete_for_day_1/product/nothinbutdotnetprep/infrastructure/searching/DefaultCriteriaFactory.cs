@@ -11,10 +11,14 @@ namespace nothinbutdotnetprep.infrastructure.searching
             propery_accessor = accessor;
         }
 
-        public AnonymousCriteria<ItemToFilter> equal_to(Property propertyToCompare) 
+        public Criteria<ItemToFilter> equal_to(Property property_to_compare) 
         {
-            return new AnonymousCriteria<ItemToFilter>(item => propery_accessor.Equals(propertyToCompare));
+            return new AnonymousCriteria<ItemToFilter>(item => propery_accessor.Equals(property_to_compare));
         }
 
+        public Criteria<ItemToFilter> equal_to_any(params Property[] values)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

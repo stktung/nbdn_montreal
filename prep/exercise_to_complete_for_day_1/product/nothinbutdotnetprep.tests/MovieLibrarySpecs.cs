@@ -231,24 +231,23 @@ namespace nothinbutdotnetprep.tests
                                            .equal_to_any(ProductionStudio.Pixar,
                                            ProductionStudio.Disney);
 
-                var results = sut.all_movies_published_by_pixar_or_disney();
+                var results = sut.all_movies_matching(criteria);
 
                 results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
             };
 
             it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
             {
-
-                var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                           .not.equal_to(ProductionStudio.Pixar);
-
-                var results = sut.all_movies_not_published_by_pixar();
+                var results = sut.all_movies_matching(criteria);
 
                 results.should_not_contain(cars, a_bugs_life);
             };
 
             it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
+                var criteria = Where<Movie>.has_an(x => x.date_published.Year)
+                                            .greater_than(2004);
+
                 var results = sut.all_movies_matching(Movie.is_published_after(2004));
 
                 results.should_only_contain(the_ring, shrek, theres_something_about_mary);
