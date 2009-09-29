@@ -325,8 +325,14 @@ namespace nothinbutdotnetprep.tests
 //                //Dreamworks
 //                //Universal
 //                //Disney
+                var comparer = Order<Movie>.by(movie => movie.production_studio,
+                                               ProductionStudio.Disney,
+                                               ProductionStudio.Pixar,
+                                               ProductionStudio.Dreamworks,
+                                               ProductionStudio.MGM)
+                    .then_by(movie => movie.date_published);
                 var results = sut.all_movies().sort_all_using(Order<Movie>.with<ProductionStudioRatingComparer>()
-                    .then_by_descending(movie => movie.date_published.Year));
+                    .then_by(movie => movie.date_published.Year));
 
                 /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings

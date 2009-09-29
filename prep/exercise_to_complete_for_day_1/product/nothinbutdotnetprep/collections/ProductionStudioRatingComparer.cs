@@ -6,7 +6,11 @@ namespace nothinbutdotnetprep.collections
     {
         public int Compare(Movie x, Movie y)
         {
-            return x.production_studio.ToString().CompareTo(y.production_studio.ToString());
+
+            var studioOrder = new List<ProductionStudio> {ProductionStudio.MGM, ProductionStudio.Pixar, ProductionStudio.Dreamworks, ProductionStudio.Universal, ProductionStudio.Disney};
+
+            return studioOrder.IndexOf(x.production_studio).CompareTo(studioOrder.IndexOf(y.production_studio));
+          
         }
     }
 }
