@@ -52,14 +52,6 @@ namespace nothinbutdotnetprep.collections
             return list_of_movies.all_items_matching(filter);
         }
 
-
-
-        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-        {
-            return all_movies_matching(item => item.production_studio == ProductionStudio.Pixar ||
-                                               item.production_studio == ProductionStudio.Disney);
-        }
-
         public IEnumerable<Movie> sort_all_movies_by_title_ascending()
         {
             var movies = new List<Movie>(list_of_movies);
