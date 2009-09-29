@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.collections
@@ -7,7 +6,7 @@ namespace nothinbutdotnetprep.collections
     {
         public int Compare(Movie x, Movie y)
         {
-            throw new NotImplementedException();
+            return x.production_studio.ToString().CompareTo(y.production_studio.ToString());
         }
     }
 }
