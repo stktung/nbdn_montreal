@@ -1,4 +1,5 @@
 using System;
+using nothinbutdotnetprep.infrastructure.ranges;
 
 namespace nothinbutdotnetprep.infrastructure.searching
 {
@@ -6,25 +7,16 @@ namespace nothinbutdotnetprep.infrastructure.searching
     {
         Func<ItemToFilter, Property> property_accessor;
         CriteriaFactory<ItemToFilter, Property> basic_factory;
-        bool negating;
-
-        public ComparableCriteriaFactory(Func<ItemToFilter, Property> accessor, CriteriaFactory<ItemToFilter, Property> basic_factory, bool negating)
-        {
-            property_accessor = accessor;
-            this.basic_factory = basic_factory;
-            this.negating = negating;
-        }
 
         public ComparableCriteriaFactory(Func<ItemToFilter, Property> accessor, CriteriaFactory<ItemToFilter, Property> basic_factory)
         {
             property_accessor = accessor;
             this.basic_factory = basic_factory;
-            this.negating = false;
         }
 
-        public Criteria<ItemToFilter> equal_to(Property property_to_compare)
+        public Criteria<ItemToFilter> equal_to(Property value_to_equal)
         {
-            return basic_factory.equal_to(property_to_compare);
+            return basic_factory.equal_to(value_to_equal);
         }
 
         public Criteria<ItemToFilter> equal_to_any(params Property[] values)
@@ -32,9 +24,13 @@ namespace nothinbutdotnetprep.infrastructure.searching
             return basic_factory.equal_to_any(values);
         }
 
-        public CriteriaFactory<ItemToFilter, Property> not()
+        public CriteriaFactory<ItemToFilter, Property> not
         {
-           return new NegatingCriteriaFactory<ItemToFilter, Property>(new ComparableCriteriaFactory<ItemToFilter, Property>(property_accessor, new DefaultCriteriaFactory<ItemToFilter, Property>(property_accessor, true), true));
+            get
+            {
+                return
+                    new NegatingCriteriaFactory<ItemToFilter, Property>(this);
+            }
         }
 
         public Criteria<ItemToFilter> greater_than(Property value)
@@ -44,8 +40,9 @@ namespace nothinbutdotnetprep.infrastructure.searching
 
         public Criteria<ItemToFilter> between(Property start, Property end)
         {
-            return new AnonymousCriteria<ItemToFilter>(item =>
-                                                       property_accessor(item).CompareTo(start) >= 0 && property_accessor(item).CompareTo(end) <= 0);
+            return new PropertyCriteria<ItemToFilter, Property>(property_accessor,
+                                                                new FallsInRangeCriteria<Property>(
+                                                                    new InclusiveRange<Property>(start, end)));
         }
     }
 }
