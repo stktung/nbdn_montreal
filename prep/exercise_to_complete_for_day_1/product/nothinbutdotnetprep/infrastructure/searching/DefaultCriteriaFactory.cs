@@ -4,21 +4,43 @@ namespace nothinbutdotnetprep.infrastructure.searching
 {
     public class DefaultCriteriaFactory<ItemToFilter, Property> : CriteriaFactory<ItemToFilter, Property>
     {
-        Func<ItemToFilter, Property> propery_accessor;
+        Func<ItemToFilter, Property> property_accessor;
 
         public DefaultCriteriaFactory(Func<ItemToFilter, Property> accessor)
         {
-            propery_accessor = accessor;
+            property_accessor = accessor;
         }
 
-        public Criteria<ItemToFilter> equal_to(Property property_to_compare) 
+        public DefaultCriteriaFactory(Func<ItemToFilter, Property> accessor, bool negate)
         {
-            return new AnonymousCriteria<ItemToFilter>(item => propery_accessor.Equals(property_to_compare));
+            property_accessor = accessor;
+        }
+
+        public Criteria<ItemToFilter> equal_to(Property value_to_equal)
+        {
+            return new PropertyCriteria<ItemToFilter, Property>(property_accessor,
+                                                                new IsEqualToCriteria<Property>(value_to_equal));
         }
 
         public Criteria<ItemToFilter> equal_to_any(params Property[] values)
         {
-            throw new NotImplementedException();
+            return new AnonymousCriteria<ItemToFilter>(
+                item =>
+                {
+                    foreach (var value in values)
+                    {
+                        if (equal_to(value).is_satisfied_by(item))
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                });
+        }
+
+        public CriteriaFactory<ItemToFilter, Property> not
+        {
+            get { return new NegatingCriteriaFactory<ItemToFilter, Property>(this); }
         }
     }
 }

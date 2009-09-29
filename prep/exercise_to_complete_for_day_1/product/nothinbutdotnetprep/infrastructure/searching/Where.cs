@@ -11,7 +11,8 @@ namespace nothinbutdotnetprep.infrastructure.searching
 
         static public ComparableCriteriaFactory<ItemToFilter, Property> has_an<Property>(Func<ItemToFilter, Property> property_accessor) where Property : IComparable<Property>
         {
-            return new ComparableCriteriaFactory<ItemToFilter, Property>(property_accessor);
+            return new ComparableCriteriaFactory<ItemToFilter, Property>(property_accessor, 
+                                                                        new DefaultCriteriaFactory<ItemToFilter, Property>(property_accessor));
         }
     }
 }
