@@ -41,6 +41,7 @@
     <Compile Include="infrastructure\searching\AndCriteria.cs" />
     <Compile Include="infrastructure\searching\AnonymousCriteria.cs" />
     <Compile Include="infrastructure\searching\BinaryCriteria.cs" />
+    <Compile Include="infrastructure\searching\ComparableCriteriaFactory.cs" />
     <Compile Include="infrastructure\searching\Criteria.cs" />
     <Compile Include="collections\Genre.cs" />
     <Compile Include="collections\IsPublishedAfterYear.cs" />
