@@ -4,5 +4,6 @@ namespace nothinbutdotnetprep.infrastructure.searching
     {
         Criteria<ItemToFilter> equal_to(Property propertyToCompare);
         Criteria<ItemToFilter> equal_to_any(params Property[] values);
+        CriteriaFactory<ItemToFilter, Property> not();
     }
 }
