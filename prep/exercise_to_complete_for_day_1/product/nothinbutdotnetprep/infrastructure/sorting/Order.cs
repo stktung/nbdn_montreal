@@ -5,9 +5,9 @@ namespace nothinbutdotnetprep.infrastructure.sorting
 {
     public class Order<Item>
     {
-        public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor,params Property[] values) 
+        public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor,params Property[] values)
         {
-            return with(new PropertyComparer<Item, Property>(property_accessor));
+            return null;
         }
 
         public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor) where Property : IComparable, IComparable<Property>
