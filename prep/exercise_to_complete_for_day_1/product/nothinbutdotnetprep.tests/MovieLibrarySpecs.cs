@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Linq.Expressions;
 using developwithpassion.bdd.contexts;
@@ -217,41 +218,41 @@ namespace nothinbutdotnetprep.tests
             it should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
                 var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                           .is_equal_to(ProductionStudio.Pixar);
+                                           .equal_to(ProductionStudio.Pixar);
 
                 var results = sut.all_movies_matching(new AnonymousCriteria<Movie>(item => item.production_studio == ProductionStudio.Pixar));
 
                 results.should_only_contain(cars, a_bugs_life);
             };
 
-            //it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
-            //{
-            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
-            //                               .equal_to_any(ProductionStudio.Pixar,
-            //                               ProductionStudio.Disney);
+            it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
+            {
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .equal_to_any(ProductionStudio.Pixar,
+                                           ProductionStudio.Disney);
 
-            //    var results = sut.all_movies_published_by_pixar_or_disney();
+                var results = sut.all_movies_published_by_pixar_or_disney();
 
-            //    results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
-            //};
+                results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
+            };
 
-            //it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
-            //{
+            it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
+            {
 
-            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
-            //                               .not.equal_to(ProductionStudio.Pixar);
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .not.equal_to(ProductionStudio.Pixar);
 
-            //    var results = sut.all_movies_not_published_by_pixar();
+                var results = sut.all_movies_not_published_by_pixar();
 
-            //    results.should_not_contain(cars, a_bugs_life);
-            //};
+                results.should_not_contain(cars, a_bugs_life);
+            };
 
-            //it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
-            //{
-            //    var results = sut.all_movies_matching(Movie.is_published_after(2004));
+            it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
+            {
+                var results = sut.all_movies_matching(Movie.is_published_after(2004));
 
-            //    results.should_only_contain(the_ring, shrek, theres_something_about_mary);
-            //};
+                results.should_only_contain(the_ring, shrek, theres_something_about_mary);
+            };
 
             it should_be_able_to_find_all_movies_published_between_a_certain_range_of_years = () =>
             {
