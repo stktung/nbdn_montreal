@@ -76,6 +76,7 @@
     <Compile Include="infrastructure\sorting\ComparerFactory.cs" />
     <Compile Include="infrastructure\sorting\InverseComparer.cs" />
     <Compile Include="infrastructure\sorting\Order.cs" />
+    <Compile Include="infrastructure\sorting\OurComparer.cs" />
     <Compile Include="infrastructure\sorting\PropertyComparer.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

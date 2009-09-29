@@ -325,6 +325,12 @@ namespace nothinbutdotnetprep.tests
 //                //Dreamworks
 //                //Universal
 //                //Disney
+                var comparer = Order<Movie>.by(movie => movie.production_studio,
+                                               ProductionStudio.Disney,
+                                               ProductionStudio.Pixar,
+                                               ProductionStudio.Dreamworks,
+                                               ProductionStudio.MGM)
+                    .then_by(movie => movie.date_published);
                 var results = sut.all_movies().sort_all_using(Order<Movie>.with<ProductionStudioRatingComparer>()
                     .then_by(movie => movie.date_published.Year));
 
