@@ -11,11 +11,6 @@ namespace nothinbutdotnetprep.infrastructure.searching
             property_accessor = accessor;
         }
 
-        public DefaultCriteriaFactory(Func<ItemToFilter, Property> accessor, bool negate)
-        {
-            property_accessor = accessor;
-        }
-
         public Criteria<ItemToFilter> equal_to(Property value_to_equal)
         {
             return new PropertyCriteria<ItemToFilter, Property>(property_accessor,
