@@ -110,7 +110,6 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-                                            
 
         [Concern(typeof (MovieLibrary))]
         public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type : concern
@@ -215,13 +214,20 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
-                var results = sut.all_movies_published_by_pixar();
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .equal_to(ProductionStudio.Pixar);
+
+                var results = sut.all_movies_matching(Movie.is_published_by(ProductionStudio.Pixar));
 
                 results.should_only_contain(cars, a_bugs_life);
             };
 
             it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .equal_to_any(ProductionStudio.Pixar,
+                                           ProductionStudio.Disney);
+
                 var results = sut.all_movies_published_by_pixar_or_disney();
 
                 results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
@@ -229,6 +235,10 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
             {
+
+                var criteria = Where<Movie>.has_a(x => x.production_studio)
+                                           .not.equal_to(ProductionStudio.Pixar);
+
                 var results = sut.all_movies_not_published_by_pixar();
 
                 results.should_not_contain(cars, a_bugs_life);
@@ -236,7 +246,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
-                var results = sut.all_movies_published_after(2004);
+                var results = sut.all_movies_matching(Movie.is_published_after(2004));
 
                 results.should_only_contain(the_ring, shrek, theres_something_about_mary);
             };

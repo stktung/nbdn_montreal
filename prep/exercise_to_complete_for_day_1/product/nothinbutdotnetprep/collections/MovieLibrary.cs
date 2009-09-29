@@ -45,18 +45,11 @@ namespace nothinbutdotnetprep.collections
             return movies;
         }
 
-        public IEnumerable<Movie> all_movies_published_by_pixar()
+
+
+        public IEnumerable<Movie> all_movies_matching(Filter<Movie> filter)
         {
-
-            return all_movies_matching(movie =>
-                movie.production_studio == ProductionStudio.Pixar
-            );
-        }
-
-
-        IEnumerable<Movie> all_movies_matching(Criteria<Movie> criteria)
-        {
-            return list_of_movies.all_items_matching(criteria);
+            return list_of_movies.all_items_matching(filter);
         }
 
 
@@ -87,17 +80,6 @@ namespace nothinbutdotnetprep.collections
             foreach (var movie in list_of_movies)
             {
                 if (movie.production_studio != ProductionStudio.Pixar)
-                {
-                    yield return movie;
-                }
-            }
-        }
-
-        public IEnumerable<Movie> all_movies_published_after(int year)
-        {
-            foreach (var movie in list_of_movies)
-            {
-                if (movie.date_published.Year > year)
                 {
                     yield return movie;
                 }

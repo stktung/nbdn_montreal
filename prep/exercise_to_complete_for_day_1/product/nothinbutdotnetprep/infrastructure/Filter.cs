@@ -1,4 +1,4 @@
 namespace nothinbutdotnetprep.infrastructure
 {
-    public delegate bool Criteria<T>(T item);
+    public delegate bool Filter<T>(T item);
 }
