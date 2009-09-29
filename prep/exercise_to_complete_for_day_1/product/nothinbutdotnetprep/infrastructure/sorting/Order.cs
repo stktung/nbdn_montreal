@@ -7,8 +7,7 @@ namespace nothinbutdotnetprep.infrastructure.sorting
     {
         public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor, params Property[] values)
         {
-            
-            return with(new FixedOrderComparer<Item, Property>(property_accessor, values));
+            return with(new CombinedPropertyComparer<Item,Property>(new FixedOrderComparer<Property>(values),property_accessor));
         }
 
         public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor) where Property : IComparable, IComparable<Property>
