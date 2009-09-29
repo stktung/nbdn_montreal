@@ -6,6 +6,7 @@ using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetprep.collections;
+using nothinbutdotnetprep.infrastructure;
 using nothinbutdotnetprep.infrastructure.extensions;
 using nothinbutdotnetprep.infrastructure.searching;
 
@@ -64,7 +65,7 @@ namespace nothinbutdotnetprep.tests
             };
         } ;
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_counting_the_number_of_movies : concern
         {
             static int number_of_movies;
@@ -85,7 +86,7 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_asked_for_all_of_the_movies : concern
         {
             static Movie first_movie;
@@ -112,7 +113,7 @@ namespace nothinbutdotnetprep.tests
         }
 
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type : concern
         {
             static Movie first_movie;
@@ -137,7 +138,7 @@ namespace nothinbutdotnetprep.tests
         }
 
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_adding_a_movie_to_the_library : concern
         {
             static Movie movie;
@@ -159,7 +160,7 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_adding_an_existing_movie_in_the_collection_again : concern
         {
             static Movie movie;
@@ -181,7 +182,7 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_adding_two_different_copies_of_the_same_movie : concern
         {
             static Movie another_copy_of_speed_racer;
@@ -189,8 +190,8 @@ namespace nothinbutdotnetprep.tests
 
             context c = () =>
             {
-                speed_racer = new Movie {title = "Speed Racer"};
-                another_copy_of_speed_racer = new Movie {title = "Speed Racer"};
+                speed_racer = new Movie { title = "Speed Racer" };
+                another_copy_of_speed_racer = new Movie { title = "Speed Racer" };
                 movie_collection.Add(speed_racer);
             };
 
@@ -205,7 +206,7 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_searching_for_movies : searching_and_sorting_concerns_for_movie_library
         {
             /* Look at the potential method explosion that can start to occur as you start to search on different criteria
@@ -215,35 +216,38 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
-                var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                           .equal_to(ProductionStudio.Pixar);
+                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to(ProductionStudio.Pixar);
 
-                var results = sut.all_movies_matching(Movie.is_published_by(ProductionStudio.Pixar));
+                var results = sut.all_movies_matching(criteria.is_satisfied_by);
 
                 results.should_only_contain(cars, a_bugs_life);
             };
 
-            it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
-            {
-                var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                           .equal_to_any(ProductionStudio.Pixar,
-                                           ProductionStudio.Disney);
+            //it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
+            //{
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                               .equal_to_any(ProductionStudio.Pixar,
+            //                               ProductionStudio.Disney);
 
-                var results = sut.all_movies_published_by_pixar_or_disney();
+            //    var results = sut.all_movies_published_by_pixar_or_disney();
 
-                results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
-            };
+            //    results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
+            //};
 
-            it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
-            {
+            //it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
+            //{
 
-                var criteria = Where<Movie>.has_a(x => x.production_studio)
-                                           .not.equal_to(ProductionStudio.Pixar);
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                               .not.equal_to(ProductionStudio.Pixar);
 
-                var results = sut.all_movies_not_published_by_pixar();
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                                               .not.equal_to(ProductionStudio.Pixar);
 
-                results.should_not_contain(cars, a_bugs_life);
-            };
+
+            //    var results = sut.all_movies_not_published_by_pixar();
+
+            //    results.should_not_contain(cars, a_bugs_life);
+            //};
 
             it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
@@ -274,7 +278,33 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        //public delegate TProperty PropertyDelegate<TItemToFilter, TProperty>(TItemToFilter obj);
+
+        //public static class Where<TItemToFilter>
+        //{
+        //    public static Property<TItemToFilter, TProperty> has_a<TProperty>(PropertyDelegate<TItemToFilter, TProperty> propertyDelegate)
+        //    {
+        //        return new Property<TItemToFilter, TProperty>();
+        //    }
+        //}
+
+        //public class Property<TItemToFilter, TProperty>
+        //{
+        //    public Criteria<TItemToFilter> equal_to(TProperty property) 
+        //    {
+                
+        //    }
+        //}
+
+        //public class AnonymousCriteria<T> : Criteria<T> 
+        //{
+        //    public bool is_satisfied_by(T item)
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
+
+        [Concern(typeof(MovieLibrary))]
         public class when_sorting_movies : searching_and_sorting_concerns_for_movie_library
         {
             /* Look at the potential method explosion that can start to occur as you start to sort on different criteria
@@ -351,62 +381,62 @@ namespace nothinbutdotnetprep.tests
             static void populate_with_default_movie_set(IList<Movie> movieList)
             {
                 indiana_jones_and_the_temple_of_doom = new Movie
-                                                       {
-                                                           title = "Indiana Jones And The Temple Of Doom",
-                                                           date_published = new DateTime(1982, 1, 1),
-                                                           genre = Genre.action,
-                                                           production_studio = ProductionStudio.Universal,
-                                                           rating = 10
-                                                       };
+                {
+                    title = "Indiana Jones And The Temple Of Doom",
+                    date_published = new DateTime(1982, 1, 1),
+                    genre = Genre.action,
+                    production_studio = ProductionStudio.Universal,
+                    rating = 10
+                };
                 cars = new Movie
-                       {
-                           title = "Cars",
-                           date_published = new DateTime(2004, 1, 1),
-                           genre = Genre.kids,
-                           production_studio = ProductionStudio.Pixar,
-                           rating = 10
-                       };
+                {
+                    title = "Cars",
+                    date_published = new DateTime(2004, 1, 1),
+                    genre = Genre.kids,
+                    production_studio = ProductionStudio.Pixar,
+                    rating = 10
+                };
 
                 the_ring = new Movie
-                           {
-                               title = "The Ring",
-                               date_published = new DateTime(2005, 1, 1),
-                               genre = Genre.horror,
-                               production_studio = ProductionStudio.MGM,
-                               rating = 7
-                           };
+                {
+                    title = "The Ring",
+                    date_published = new DateTime(2005, 1, 1),
+                    genre = Genre.horror,
+                    production_studio = ProductionStudio.MGM,
+                    rating = 7
+                };
                 shrek = new Movie
-                        {
-                            title = "Shrek",
-                            date_published = new DateTime(2006, 5, 10),
-                            genre = Genre.kids,
-                            production_studio = ProductionStudio.Dreamworks,
-                            rating = 10
-                        };
+                {
+                    title = "Shrek",
+                    date_published = new DateTime(2006, 5, 10),
+                    genre = Genre.kids,
+                    production_studio = ProductionStudio.Dreamworks,
+                    rating = 10
+                };
                 a_bugs_life = new Movie
-                              {
-                                  title = "A Bugs Life",
-                                  date_published = new DateTime(2000, 6, 20),
-                                  genre = Genre.kids,
-                                  production_studio = ProductionStudio.Pixar,
-                                  rating = 10
-                              };
+                {
+                    title = "A Bugs Life",
+                    date_published = new DateTime(2000, 6, 20),
+                    genre = Genre.kids,
+                    production_studio = ProductionStudio.Pixar,
+                    rating = 10
+                };
                 theres_something_about_mary = new Movie
-                                              {
-                                                  title = "There's Something About Mary",
-                                                  date_published = new DateTime(2007, 1, 1),
-                                                  genre = Genre.comedy,
-                                                  production_studio = ProductionStudio.MGM,
-                                                  rating = 5
-                                              };
+                {
+                    title = "There's Something About Mary",
+                    date_published = new DateTime(2007, 1, 1),
+                    genre = Genre.comedy,
+                    production_studio = ProductionStudio.MGM,
+                    rating = 5
+                };
                 pirates_of_the_carribean = new Movie
-                                           {
-                                               title = "Pirates of the Carribean",
-                                               date_published = new DateTime(2003, 1, 1),
-                                               genre = Genre.action,
-                                               production_studio = ProductionStudio.Disney,
-                                               rating = 10
-                                           };
+                {
+                    title = "Pirates of the Carribean",
+                    date_published = new DateTime(2003, 1, 1),
+                    genre = Genre.action,
+                    production_studio = ProductionStudio.Disney,
+                    rating = 10
+                };
 
                 movieList.Add(cars);
                 movieList.Add(indiana_jones_and_the_temple_of_doom);
