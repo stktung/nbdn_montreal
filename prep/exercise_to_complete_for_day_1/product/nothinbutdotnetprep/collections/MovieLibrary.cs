@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using nothinbutdotnetprep.infrastructure;
 using nothinbutdotnetprep.infrastructure.extensions;
+using nothinbutdotnetprep.infrastructure.searching;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -46,17 +47,9 @@ namespace nothinbutdotnetprep.collections
         }
 
 
-
-        public IEnumerable<Movie> all_movies_matching(Filter<Movie> filter)
+        public IEnumerable<Movie> all_movies_matching(Criteria<Movie> filter)
         {
             return list_of_movies.all_items_matching(filter);
-        }
-
-
-        public IEnumerable<Movie> all_movies_published_by_pixar_or_disney()
-        {
-            return all_movies_matching(item => item.production_studio == ProductionStudio.Pixar ||
-                                               item.production_studio == ProductionStudio.Disney);
         }
 
         public IEnumerable<Movie> sort_all_movies_by_title_ascending()

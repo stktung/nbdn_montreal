@@ -6,6 +6,7 @@ using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetprep.collections;
+using nothinbutdotnetprep.infrastructure;
 using nothinbutdotnetprep.infrastructure.extensions;
 using nothinbutdotnetprep.infrastructure.searching;
 
@@ -64,7 +65,7 @@ namespace nothinbutdotnetprep.tests
             };
         } ;
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_counting_the_number_of_movies : concern
         {
             static int number_of_movies;
@@ -85,7 +86,7 @@ namespace nothinbutdotnetprep.tests
             };
         }
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_asked_for_all_of_the_movies : concern
         {
             static Movie first_movie;
@@ -112,7 +113,7 @@ namespace nothinbutdotnetprep.tests
         }
 
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_trying_to_change_the_set_of_movies_returned_by_the_movie_library_to_a_mutable_type : concern
         {
             static Movie first_movie;
@@ -137,7 +138,7 @@ namespace nothinbutdotnetprep.tests
         }
 
 
-        [Concern(typeof (MovieLibrary))]
+        [Concern(typeof(MovieLibrary))]
         public class when_adding_a_movie_to_the_library : concern
         {
             static Movie movie;
@@ -215,27 +216,57 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
+<<<<<<< HEAD
+                var criteria = Where<Movie>.has_a(x => x.production_studio).equal_to(ProductionStudio.Pixar);
+
+                var results = sut.all_movies_matching(criteria.is_satisfied_by);
+=======
                 var results = sut.all_movies_matching(Where<Movie>.has_a(x => x.production_studio)
                                                           .equal_to(ProductionStudio.Pixar));
+>>>>>>> 4c1ded3e7204da82c2163791554733df73050fac
 
                 results.should_only_contain(cars, a_bugs_life);
             };
 
+<<<<<<< HEAD
+            //it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
+            //{
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                               .equal_to_any(ProductionStudio.Pixar,
+            //                               ProductionStudio.Disney);
+
+            //    var results = sut.all_movies_published_by_pixar_or_disney();
+=======
             it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
                 var results = sut.all_movies_matching(Where<Movie>.has_a(x => x.production_studio)
                                                           .equal_to_any(ProductionStudio.Pixar,
                                                                         ProductionStudio.Disney));
+>>>>>>> 4c1ded3e7204da82c2163791554733df73050fac
 
-                results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
-            };
+            //    results.should_only_contain(a_bugs_life, pirates_of_the_carribean, cars);
+            //};
 
+<<<<<<< HEAD
+            //it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
+            //{
+
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                               .not.equal_to(ProductionStudio.Pixar);
+
+            //    var criteria = Where<Movie>.has_a(x => x.production_studio)
+            //                                               .not.equal_to(ProductionStudio.Pixar);
+=======
             it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
             {
                 var results = sut.all_movies_matching(criteria);
+>>>>>>> 4c1ded3e7204da82c2163791554733df73050fac
 
-                results.should_not_contain(cars, a_bugs_life);
-            };
+
+            //    var results = sut.all_movies_not_published_by_pixar();
+
+            //    results.should_not_contain(cars, a_bugs_life);
+            //};
 
             it should_be_able_to_find_all_movies_published_after_a_certain_year = () =>
             {
