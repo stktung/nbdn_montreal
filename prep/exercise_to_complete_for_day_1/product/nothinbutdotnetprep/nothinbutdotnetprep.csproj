@@ -41,6 +41,7 @@
     <Compile Include="infrastructure\searching\AndCriteria.cs" />
     <Compile Include="infrastructure\searching\AnonymousCriteria.cs" />
     <Compile Include="infrastructure\searching\BinaryCriteria.cs" />
+    <Compile Include="infrastructure\searching\ComparableCriteriaFactory.cs" />
     <Compile Include="infrastructure\searching\Criteria.cs" />
     <Compile Include="collections\Genre.cs" />
     <Compile Include="collections\IsPublishedAfterYear.cs" />
@@ -60,6 +61,7 @@
     <Compile Include="infrastructure\searching\CriteriaFactory.cs" />
     <Compile Include="infrastructure\searching\DefaultCriteriaFactory.cs" />
     <Compile Include="infrastructure\searching\OrCriteria.cs" />
+    <Compile Include="infrastructure\searching\SignedCriteria.cs" />
     <Compile Include="infrastructure\searching\Where.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
