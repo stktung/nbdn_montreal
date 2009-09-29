@@ -9,4 +9,5 @@ namespace nothinbutdotnetprep.infrastructure.searching
             return property_accessor;
         }
     }
+
 }

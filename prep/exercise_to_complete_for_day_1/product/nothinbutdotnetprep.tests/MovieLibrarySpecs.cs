@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.mbunit;
 using developwithpassion.bdd.mbunit.standard.observations;
@@ -218,7 +219,7 @@ namespace nothinbutdotnetprep.tests
                 var criteria = Where<Movie>.has_a(x => x.production_studio)
                                            .equal_to(ProductionStudio.Pixar);
 
-                var results = sut.all_movies_matching(Movie.is_published_by(ProductionStudio.Pixar));
+                var results = sut.all_movies_matching(new AnonymousCriteria<Movie>(item => item.production_studio == ProductionStudio.Pixar));
 
                 results.should_only_contain(cars, a_bugs_life);
             };
