@@ -18,9 +18,9 @@ namespace nothinbutdotnetprep.infrastructure.searching
             return basic_factory.equal_to(property_to_compare);
         }
 
-        public Criteria<ItemToFilter> equal_to_any(params Property[] values)
+        public Criteria<ItemToFilter> equal_to_any(params Property[] properties)
         {
-            return basic_factory.equal_to_any(values);
+            return basic_factory.equal_to_any(properties);
         }
 
         public Criteria<ItemToFilter> greater_than(Property value)

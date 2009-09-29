@@ -4,25 +4,38 @@ namespace nothinbutdotnetprep.infrastructure.searching
 {
     public class DefaultCriteriaFactory<ItemToFilter, Property> : CriteriaFactory<ItemToFilter, Property>
     {
-        Func<ItemToFilter, Property> propery_accessor;
+        Func<ItemToFilter, Property> property_accessor;
+        Predicate<ItemToFilter> property_accessor_comparer;
+        bool not_condition;
 
         public DefaultCriteriaFactory(Func<ItemToFilter, Property> accessor)
         {
-            propery_accessor = accessor;
+            property_accessor = accessor;
         }
 
         public Criteria<ItemToFilter> equal_to(Property property_to_compare) 
         {
-            return new AnonymousCriteria<ItemToFilter>(item => propery_accessor(item).Equals(property_to_compare));
+            return new AnonymousCriteria<ItemToFilter>(item =>
+            {
+                var equals = property_accessor(item).Equals(property_to_compare);
+                if (not_condition)
+                {
+                    return !equals;
+                }
+                else 
+                {
+                    return equals;
+                }
+            });
         }
 
-        public Criteria<ItemToFilter> equal_to_any(params Property[] values)
+        public Criteria<ItemToFilter> equal_to_any(params Property[] properties)
         {
             return new AnonymousCriteria<ItemToFilter>(item =>
             {
-                foreach (var value in values)
+                foreach (var property in properties)
                 {
-                    if (propery_accessor(item).Equals(value))
+                    if (property_accessor(item).Equals(property))
                     {
                         return true;
                     }   
@@ -30,6 +43,15 @@ namespace nothinbutdotnetprep.infrastructure.searching
 
                 return false;
             });
+        }
+
+        public DefaultCriteriaFactory<ItemToFilter, Property> not
+        {
+            get 
+            {
+                not_condition = !not_condition;
+                return this;
+            }
         }
     }
 }
