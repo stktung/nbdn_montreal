@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using nothinbutdotnetprep.infrastructure;
 using nothinbutdotnetprep.infrastructure.extensions;
-using nothinbutdotnetprep.infrastructure.searching;
 
 namespace nothinbutdotnetprep.collections
 {
@@ -35,39 +34,5 @@ namespace nothinbutdotnetprep.collections
             return list_of_movies.Contains(movie);
         }
 
-        public IEnumerable<Movie> all_movies_matching(Criteria<Movie> filter)
-        {
-            return list_of_movies.all_items_matching(filter);
-        }
-
-        public IEnumerable<Movie> sort_movies_using(IComparer<Movie> comparable) 
-        {
-            var movies = new List<Movie>(list_of_movies);
-            movies.Sort(comparable);
-
-            return movies;
-        }
-
-        //public IEnumerable<Movie> sort_all_movies_by_date_published_descending()
-        //{
-        //    var movies = new List<Movie>(list_of_movies);
-        //    movies.Sort(delegate(Movie x, Movie y)
-        //    {
-        //        return y.date_published.CompareTo(x.date_published);
-        //    });
-
-        //    return movies;
-        //}
-
-        //public IEnumerable<Movie> sort_all_movies_by_date_published_ascending()
-        //{
-        //    var movies = new List<Movie>(list_of_movies);
-        //    movies.Sort(delegate(Movie x, Movie y)
-        //    {
-        //        return x.date_published.CompareTo(y.date_published);
-        //    });
-
-        //    return movies;
-        //}
     }
 }

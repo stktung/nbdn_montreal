@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace nothinbutdotnetprep.infrastructure.sorting
 {
-    public class PropertyComparer<Item, Property> : IComparer<Item> where Property : IComparable
+    public class PropertyComparer<Item, Property> : IComparer<Item> where Property : IComparable<Property>
     {
         Func<Item, Property> property_accessor;
 
