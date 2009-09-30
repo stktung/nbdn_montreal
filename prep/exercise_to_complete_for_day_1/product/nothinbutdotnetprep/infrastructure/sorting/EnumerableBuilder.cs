@@ -6,7 +6,7 @@ using nothinbutdotnetprep.infrastructure.extensions;
 
 namespace nothinbutdotnetprep.infrastructure.sorting
 {
-    public class EnumerableBuilder<Item> : IEnumerable<Item>
+    public class EnumerableBuilder<Item> : IEnumerable<Item>, EnumerableBuilder1<Item>, EnumerableBuilder2<Item>
     {
         private readonly ComparerBuilder<Item> ComparerBuilder;
         private IEnumerable<Item> items;
@@ -55,4 +55,18 @@ namespace nothinbutdotnetprep.infrastructure.sorting
             return this;
         }
     }
+
+    public interface EnumerableBuilder1<T>
+    {
+        EnumerableBuilder<T> with(ComparerBuilder<T> comparer);
+        EnumerableBuilder<T> by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilder<T> by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+    }
+
+    public interface EnumerableBuilder2<T>
+    {
+        EnumerableBuilder<T> then_by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilder<T> then_by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+    }
+
 }
