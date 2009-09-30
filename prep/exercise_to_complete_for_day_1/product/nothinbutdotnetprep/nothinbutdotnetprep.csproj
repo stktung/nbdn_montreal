@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{286C7067-D921-4B26-8CFA-9F9B795FD4E1}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -75,6 +75,7 @@
     <Compile Include="infrastructure\sorting\CombinedPropertyComparer.cs" />
     <Compile Include="infrastructure\sorting\ComparerBuilder.cs" />
     <Compile Include="infrastructure\sorting\ComparerFactory.cs" />
+    <Compile Include="infrastructure\sorting\DoNothingComparer.cs" />
     <Compile Include="infrastructure\sorting\EnumerableBuilder.cs" />
     <Compile Include="infrastructure\sorting\FixedOrderComparer.cs" />
     <Compile Include="infrastructure\sorting\InverseComparer.cs" />

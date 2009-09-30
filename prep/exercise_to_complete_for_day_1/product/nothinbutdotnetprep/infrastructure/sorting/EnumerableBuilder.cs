@@ -1,28 +1,45 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.infrastructure.extensions;
 
 namespace nothinbutdotnetprep.infrastructure.sorting
 {
-    public class EnumerableBuilder<ItemToSort> : IEnumerable<ItemToSort>
+    public class EnumerableBuilder<Item> : IEnumerable<Item>
     {
-        private readonly ComparerBuilder<ItemToSort> ComparerBuilder;
-        private IEnumerable<ItemToSort> items;
+        private readonly ComparerBuilder<Item> ComparerBuilder;
+        private IEnumerable<Item> items;
 
-        public EnumerableBuilder(ComparerBuilder<ItemToSort> comparerBuilder, IEnumerable<ItemToSort> items)
+        public EnumerableBuilder(ComparerBuilder<Item> comparerBuilder, IEnumerable<Item> items)
         {
             ComparerBuilder = comparerBuilder;
             this.items = items;
         }
-        
-        public EnumerableBuilder<ItemToSort> then_by<Property>(Func<ItemToSort, Property> accessor) where Property : IComparable<Property>
+
+        public EnumerableBuilder<Item> by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        {
+            return then_by(accessor);
+        }
+
+        public EnumerableBuilder<Item> by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        {
+            return then_by_descending(accessor);
+        }
+
+        public EnumerableBuilder<Item> then_by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
         {
             ComparerBuilder.then_by(accessor);
             return this;
         }
 
-        public IEnumerator<ItemToSort> GetEnumerator()
+        public EnumerableBuilder<Item> then_by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        {
+            ComparerBuilder.then_by_descending(accessor);
+            return this;
+        }
+
+        public IEnumerator<Item> GetEnumerator()
         {
             return items.sort_all_using(ComparerBuilder).GetEnumerator();
         }
@@ -32,9 +49,9 @@ namespace nothinbutdotnetprep.infrastructure.sorting
             return GetEnumerator();
         }
 
-        public EnumerableBuilder<ItemToSort> then_by_descending<Property>(Func<ItemToSort, Property> accessor) where Property : IComparable<Property>
+        public EnumerableBuilder<Item> with(ComparerBuilder<Item> comparer)
         {
-            ComparerBuilder.then_by_descending(accessor);
+            ComparerBuilder.then_using(comparer);
             return this;
         }
     }
