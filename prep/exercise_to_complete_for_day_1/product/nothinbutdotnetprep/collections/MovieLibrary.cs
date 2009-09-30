@@ -17,9 +17,9 @@ namespace nothinbutdotnetprep.collections
             this.list_of_movies = list_of_movies;
         }
 
-        public IEnumerable<Movie> all_movies()
+        public IEnumerable<Movie> all_movies
         {
-            return list_of_movies.one_at_a_time();
+            get { return list_of_movies.one_at_a_time(); }
         }
 
         public void add(Movie movie)

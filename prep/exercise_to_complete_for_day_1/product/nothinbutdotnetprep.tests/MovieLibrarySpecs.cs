@@ -77,7 +77,7 @@ namespace nothinbutdotnetprep.tests
 
             because b = () =>
             {
-                number_of_movies = sut.all_movies().Count();
+                number_of_movies = sut.all_movies.Count();
             };
 
             it should_return_the_number_of_all_movies_in_the_library = () =>
@@ -103,7 +103,7 @@ namespace nothinbutdotnetprep.tests
 
             because b = () =>
             {
-                all_movies = sut.all_movies();
+                all_movies = sut.all_movies;
             };
 
             it should_receive_a_set_containing_each_movie_in_the_library = () =>
@@ -128,7 +128,7 @@ namespace nothinbutdotnetprep.tests
 
             because b = () =>
             {
-                doing(() => sut.all_movies().downcast_to<IList<Movie>>());
+                doing(() => sut.all_movies.downcast_to<IList<Movie>>());
             };
 
             it should_get_an_invalid_cast_exception = () =>
@@ -216,7 +216,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_by_pixar = () =>
             {
-                var results = sut.all_movies().all_items_matching(Where<Movie>.has_a(x => x.production_studio)
+                var results = sut.all_movies.all_items_matching(Where<Movie>.has_a(x => x.production_studio)
                                                           .equal_to(ProductionStudio.Pixar));
 
                 results.should_only_contain(cars, a_bugs_life);
@@ -224,7 +224,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_published_by_pixar_or_disney = () =>
             {
-                var results = sut.all_movies().all_items_matching(Where<Movie>.has_a(x => x.production_studio)
+                var results = sut.all_movies.all_items_matching(Where<Movie>.has_a(x => x.production_studio)
                                                           .equal_to_any(ProductionStudio.Pixar,
                                                                         ProductionStudio.Disney));
 
@@ -233,7 +233,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_movies_not_published_by_pixar = () =>
             {
-                var results = sut.all_movies().all_items_matching(Where<Movie>.has_a(x => x.production_studio)
+                var results = sut.all_movies.all_items_matching(Where<Movie>.has_a(x => x.production_studio)
                                                           .not.equal_to(ProductionStudio.Pixar));
 
                 results.should_not_contain(cars, a_bugs_life);
@@ -244,7 +244,7 @@ namespace nothinbutdotnetprep.tests
                 var criteria = Where<Movie>.has_an(x => x.date_published.Year)
                     .greater_than(2004);
 
-                var results = sut.all_movies().all_items_matching(criteria);
+                var results = sut.all_movies.all_items_matching(criteria);
 
                 results.should_only_contain(the_ring, shrek, theres_something_about_mary);
             };
@@ -254,14 +254,14 @@ namespace nothinbutdotnetprep.tests
                 var criteria = Where<Movie>.has_an(x => x.date_published.Year)
                     .between(1982, 2003);
 
-                var results = sut.all_movies().all_items_matching(criteria);
+                var results = sut.all_movies.all_items_matching(criteria);
 
                 results.should_only_contain(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean);
             };
 
             it should_be_able_to_find_all_kid_movies = () =>
             {
-                var results = sut.all_movies().all_items_matching(Where<Movie>.has_a(x => x.genre)
+                var results = sut.all_movies.all_items_matching(Where<Movie>.has_a(x => x.genre)
                                                           .equal_to(Genre.kids));
 
                 results.should_only_contain(a_bugs_life, shrek, cars);
@@ -269,7 +269,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_find_all_action_movies = () =>
             {
-                var results = sut.all_movies().all_items_matching(Where<Movie>.has_a(x => x.genre)
+                var results = sut.all_movies.all_items_matching(Where<Movie>.has_a(x => x.genre)
                                                           .equal_to(Genre.action));
 
                 results.should_only_contain(indiana_jones_and_the_temple_of_doom, pirates_of_the_carribean);
@@ -286,9 +286,7 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_sort_all_movies_by_title_descending = () =>
             {
-
-                //var results = sut.sort_all_movies_by_title_descending();
-                var results = sut.all_movies().sort().by_descending(movie => movie.title);
+                var results = sut.all_movies.sort().by(movie => movie.title);
 
                 results.should_only_contain_in_order(theres_something_about_mary, the_ring, shrek, pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
                                                      cars, a_bugs_life);
@@ -299,7 +297,7 @@ namespace nothinbutdotnetprep.tests
             {
 
                 //var results = sut.sort_all_movies_by_title_descending();
-                var results = sut.all_movies().sort().by_descending(movie => movie.rating)
+                var results = sut.all_movies.sort().by_descending(movie => movie.rating)
                     .then_by(movie => movie.title);
 
                 results.should_only_contain_in_order(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom, pirates_of_the_carribean, shrek, the_ring, theres_something_about_mary);
@@ -310,7 +308,7 @@ namespace nothinbutdotnetprep.tests
             {
 
                 //var results = sut.sort_all_movies_by_title_descending();
-                var results = sut.all_movies().sort().by_descending(movie => movie.rating)
+                var results = sut.all_movies.sort().by_descending(movie => movie.rating)
                     .then_by_descending(movie => movie.title);
 
                 results.should_only_contain_in_order(shrek, pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom, cars, a_bugs_life, the_ring, theres_something_about_mary);
@@ -320,21 +318,21 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_sort_all_movies_by_title_ascending = () =>
             {
-                var results = sut.all_movies().sort().by(movie => movie.title);
+                var results = sut.all_movies.sort().by(movie => movie.title);
 
                 results.should_only_contain_in_order(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom, pirates_of_the_carribean, shrek, the_ring, theres_something_about_mary);
             };
 
             it should_be_able_to_sort_all_movies_by_date_published_descending = () =>
             {
-                var results = sut.all_movies().sort().by_descending(movie => movie.date_published);
+                var results = sut.all_movies.sort().by_descending(movie => movie.date_published);
 
                 results.should_only_contain_in_order(theres_something_about_mary, shrek, the_ring, cars, pirates_of_the_carribean, a_bugs_life, indiana_jones_and_the_temple_of_doom);
             };
 
             it should_be_able_to_sort_all_movies_by_date_published_ascending = () =>
             {
-                var results = sut.all_movies().sort().by(movie => movie.date_published);
+                var results = sut.all_movies.sort().by(movie => movie.date_published);
 
                 results.should_only_contain_in_order(indiana_jones_and_the_temple_of_doom, a_bugs_life, pirates_of_the_carribean, cars, the_ring, shrek, theres_something_about_mary);
             };
@@ -355,7 +353,7 @@ namespace nothinbutdotnetprep.tests
                                                ProductionStudio.Disney,
                                                ProductionStudio.Paramount
                                               ).then_by(movie => movie.date_published.Year);
-                var results = sut.all_movies().sort().with(comparer);
+                var results = sut.all_movies.sort().with(comparer);
 
                 /* should return a set of results 
                  * in the collection sorted by the rating of the production studio (not the movie rating) and year published. for this exercise you need to take the studio ratings

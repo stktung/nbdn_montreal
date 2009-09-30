@@ -34,7 +34,7 @@ namespace nothinbutdotnetprep.infrastructure.extensions
 
         public static EnumerableBuilder<Item> sort<Item>(this IEnumerable<Item> items) 
         {
-            return new EnumerableBuilder<Item>(new ComparerBuilder<Item>(new DoNothingComparer<Item>()), items);
+            return new EnumerableBuilder<Item>(new ComparerBuilder<Item>(new NulloComparer<Item>()), items);
         }
     }
 }
