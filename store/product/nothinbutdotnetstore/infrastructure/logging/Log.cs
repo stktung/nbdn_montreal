@@ -4,16 +4,16 @@ namespace nothinbutdotnetstore.infrastructure.logging
 {
     public class Log
     {
-        private static LogFactory _log_factory;
+        static public LogFactory log_factory { get; set; }
 
-        static public Logger bound_to(Type type_that_requires_logging)
+        static public Logger an
         {
-            return _log_factory.create_logger_for(type_that_requires_logging);
+            get { return log_factory.create_logger_for(the_type_that_requested_logging()); }
         }
 
-        static public void initialize_with(LogFactory log_factory)
+        static Type the_type_that_requested_logging()
         {
-            _log_factory = log_factory;
+            throw new NotImplementedException();
         }
     }
 }

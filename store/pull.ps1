@@ -1,6 +1,6 @@
-if ($args.length -neq 1)
+if ($args.length -ne 1)
 {
-  "Usage -- pull [remotename]
+  "Usage -- pull [remotename]"
   exit
 }
 git checkout development
