@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using System.Text;
 
 namespace nothinbutdotnetstore.infrastructure.logging
 {
@@ -13,7 +15,7 @@ namespace nothinbutdotnetstore.infrastructure.logging
 
         static Type the_type_that_requested_logging()
         {
-            throw new NotImplementedException();
+            return new StackFrame(2).GetMethod().ReflectedType;
         }
     }
 }
