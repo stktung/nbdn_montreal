@@ -13,6 +13,16 @@ namespace nothinbutdotnetstore.tests.infrastructure
         [Concern(typeof (Log))]
         public class when_providing_access_to_a_logging_adapter : concern
         {
+            it should_provide_access_to_the_logging_framework_that_it_was_initialized_with = () =>
+            {
+                result.should_be_equal_to(logging_adapter);
+            };
+
+            because b = () =>
+            {
+                result = Log.bound_to(typeof(when_providing_access_to_a_logging_adapter));
+            };
+
             context c = () =>
             {
                 logging_adapter = an<Logger>();
@@ -24,16 +34,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
                 add_pipeline_behaviour(() => Log.initialize_with(log_factory),() => Log.initialize_with(null));
             };
 
-            because b = () =>
-            {
-                result = Log.an;
-            };
-
-
-            it should_provide_access_to_the_logging_framework_that_was_configured = () =>
-            {
-                result.should_be_equal_to(logging_adapter);
-            };
 
             static Logger result;
             static Logger logging_adapter;
