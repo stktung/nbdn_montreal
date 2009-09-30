@@ -1,7 +1,7 @@
 USE [master]
 GO
 
-IF EXISTS(SELECT * FROM Sysdatabases WHERE NAME LIKE '@initial_catalog@')
+IF EXISTS(SELECT * FROM sysdatabases WHERE NAME LIKE '@initial_catalog@')
   DROP DATABASE [@initial_catalog@]
   GO
 
