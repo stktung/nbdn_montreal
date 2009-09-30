@@ -5,7 +5,7 @@
   </appSettings>
   <connectionStrings>
     <add name="App"
-			 connectionString="data source=JPXPDev\SQLExpress;Integrated Security=SSPI;Initial Catalog=nothinbutdotnetstore"
+			 connectionString="data source=(local);Integrated Security=SSPI;Initial Catalog=nothinbutdotnetstore"
 			 providerName="System.Data.SqlClient"/>
   </connectionStrings>
   <system.web>
