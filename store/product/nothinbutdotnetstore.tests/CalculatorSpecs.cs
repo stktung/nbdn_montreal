@@ -1,4 +1,3 @@
-using System;
 using System.Data;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
@@ -7,7 +6,7 @@ namespace nothinbutdotnetstore.tests
 {
     public class CalculatorSpecs
     {
-        public abstract class concern : observations_for_a_sut_with_a_contract<Calculator,BasicCalculator> {}
+        public abstract class concern : observations_for_a_sut_with_a_contract<Calculator, BasicCalculator> {}
 
         public class when_adding_two_positive_numbers : concern
         {
@@ -26,7 +25,8 @@ namespace nothinbutdotnetstore.tests
         }
     }
 
-    public interface Calculator {
+    public interface Calculator
+    {
         int add(int first, int second);
     }
 
@@ -43,6 +43,5 @@ namespace nothinbutdotnetstore.tests
         {
             return first + second;
         }
-
     }
 }
