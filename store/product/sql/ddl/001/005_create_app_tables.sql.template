@@ -20,8 +20,6 @@ ALTER TABLE [dbo].[Departments] WITH NOCHECK ADD
 		[DepartmentID]
 	)  ON [PRIMARY] 
 GO
-GRANT  UPDATE  ON [dbo].[Departments]  TO [WebUser]
-GO
 
 
 
