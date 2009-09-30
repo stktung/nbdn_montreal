@@ -1,12 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using nothinbutdotnetprep.collections;
 using nothinbutdotnetprep.infrastructure.extensions;
 
 namespace nothinbutdotnetprep.infrastructure.sorting
 {
-    public class EnumerableBuilder<Item> : IEnumerable<Item>, EnumerableBuilder1<Item>, EnumerableBuilder2<Item>
+    public class EnumerableBuilder<Item> : IEnumerable<Item>, EnumerableBuilderStartExpression<Item>, EnumerableBuilderContinuationExpression<Item>
     {
         private readonly ComparerBuilder<Item> ComparerBuilder;
         private IEnumerable<Item> items;
@@ -17,23 +16,23 @@ namespace nothinbutdotnetprep.infrastructure.sorting
             this.items = items;
         }
 
-        public EnumerableBuilder<Item> by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        public EnumerableBuilderContinuationExpression<Item> by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
         {
             return then_by(accessor);
         }
 
-        public EnumerableBuilder<Item> by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        public EnumerableBuilderContinuationExpression<Item> by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
         {
             return then_by_descending(accessor);
         }
 
-        public EnumerableBuilder<Item> then_by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        public EnumerableBuilderContinuationExpression<Item> then_by<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
         {
             ComparerBuilder.then_by(accessor);
             return this;
         }
 
-        public EnumerableBuilder<Item> then_by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
+        public EnumerableBuilderContinuationExpression<Item> then_by_descending<Property>(Func<Item, Property> accessor) where Property : IComparable<Property>
         {
             ComparerBuilder.then_by_descending(accessor);
             return this;
@@ -49,24 +48,24 @@ namespace nothinbutdotnetprep.infrastructure.sorting
             return GetEnumerator();
         }
 
-        public EnumerableBuilder<Item> with(ComparerBuilder<Item> comparer)
+        public EnumerableBuilderContinuationExpression<Item> with(ComparerBuilder<Item> comparer)
         {
             ComparerBuilder.then_using(comparer);
             return this;
         }
     }
 
-    public interface EnumerableBuilder1<T>
+    public interface EnumerableBuilderStartExpression<T> : IEnumerable<T>
     {
-        EnumerableBuilder<T> with(ComparerBuilder<T> comparer);
-        EnumerableBuilder<T> by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
-        EnumerableBuilder<T> by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilderContinuationExpression<T> with(ComparerBuilder<T> comparer);
+        EnumerableBuilderContinuationExpression<T> by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilderContinuationExpression<T> by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
     }
 
-    public interface EnumerableBuilder2<T>
+    public interface EnumerableBuilderContinuationExpression<T> : IEnumerable<T>
     {
-        EnumerableBuilder<T> then_by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
-        EnumerableBuilder<T> then_by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilderContinuationExpression<T> then_by<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
+        EnumerableBuilderContinuationExpression<T> then_by_descending<Property>(Func<T, Property> accessor) where Property : IComparable<Property>;
     }
 
 }

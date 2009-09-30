@@ -295,7 +295,6 @@ namespace nothinbutdotnetprep.tests
 
             it should_be_able_to_sort_all_movies_by_movie_rating_descending_then_by_movie_title = () =>
             {
-
                 //var results = sut.sort_all_movies_by_title_descending();
                 var results = sut.all_movies.sort().by_descending(movie => movie.rating)
                     .then_by(movie => movie.title);
