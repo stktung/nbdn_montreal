@@ -288,14 +288,35 @@ namespace nothinbutdotnetprep.tests
             {
 
                 //var results = sut.sort_all_movies_by_title_descending();
-                var results = sut.all_movies().sort_by_descending(movie => movie.title)
-                                                                .then_by(movie => movie.rating)
-                                                                .then_by_descending(movie => movie.date_published));
+                var results = sut.all_movies().sort_by_descending(movie => movie.title);
 
                 results.should_only_contain_in_order(theres_something_about_mary, the_ring, shrek, pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom,
                                                      cars, a_bugs_life);
 
             };
+
+            it should_be_able_to_sort_all_movies_by_movie_rating_descending_then_by_movie_title = () =>
+            {
+
+                //var results = sut.sort_all_movies_by_title_descending();
+                var results = sut.all_movies().sort_by_descending(movie => movie.rating)
+                    .then_by(movie => movie.title);
+
+                results.should_only_contain_in_order(a_bugs_life, cars, indiana_jones_and_the_temple_of_doom, pirates_of_the_carribean, shrek, the_ring, theres_something_about_mary);
+
+            };
+
+            it should_be_able_to_sort_all_movies_by_movie_rating_descending_then_by_movie_title_descending = () =>
+            {
+
+                //var results = sut.sort_all_movies_by_title_descending();
+                var results = sut.all_movies().sort_by_descending(movie => movie.rating)
+                    .then_by_descending(movie => movie.title);
+
+                results.should_only_contain_in_order(shrek, pirates_of_the_carribean, indiana_jones_and_the_temple_of_doom, cars, a_bugs_life, the_ring, theres_something_about_mary);
+
+            };
+
 
             it should_be_able_to_sort_all_movies_by_title_ascending = () =>
             {

@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using nothinbutdotnetprep.infrastructure.searching;
+using nothinbutdotnetprep.infrastructure.sorting;
 
 namespace nothinbutdotnetprep.infrastructure.extensions
 {
@@ -30,5 +32,13 @@ namespace nothinbutdotnetprep.infrastructure.extensions
                 if (filter(item)) yield return item;
             }
         }
+
+        public static EnumerableBuilder<Item> sort_by_descending<Item, Property>(this IEnumerable<Item> items, Func<Item, Property> accessor) where Property : IComparable<Property>
+        {
+            return new EnumerableBuilder<Item>(
+                new ComparerBuilder<Item>(new InverseComparer<Item>(new PropertyComparer<Item, Property>(accessor))),
+                items);
+        }
+
     }
 }

@@ -10,12 +10,12 @@ namespace nothinbutdotnetprep.infrastructure.sorting
             return with(new CombinedPropertyComparer<Item,Property>(new FixedOrderComparer<Property>(values),property_accessor));
         }
 
-        public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor) where Property : IComparable, IComparable<Property>
+        public static ComparerBuilder<Item> by<Property>(Func<Item, Property> property_accessor) where Property : IComparable<Property>
         {
             return with(new PropertyComparer<Item, Property>(property_accessor));
         }
 
-        public static ComparerBuilder<Item> by_descending<Property>(Func<Item, Property> property_accessor) where Property : IComparable, IComparable<Property>
+        public static ComparerBuilder<Item> by_descending<Property>(Func<Item, Property> property_accessor) where Property : IComparable<Property>
         {
             return with(new InverseComparer<Item>(new PropertyComparer<Item, Property>(property_accessor)));
         }
