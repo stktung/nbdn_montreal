@@ -29,6 +29,7 @@ namespace nothinbutdotnetstore.tests.web
 
             context c = () =>
             {
+                front_controller = the_dependency<FrontController>();
                 http_context = ObjectMother.create_http_context();
                 request = new object();
 
