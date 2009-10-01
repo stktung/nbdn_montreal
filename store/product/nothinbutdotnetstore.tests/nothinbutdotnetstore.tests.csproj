@@ -76,10 +76,12 @@
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
     <Compile Include="web\ApplicationRequestCommandSpecs.cs" />
+    <Compile Include="web\RequestFactorySpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
+    <Compile Include="web\ViewSubDepartmentSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">

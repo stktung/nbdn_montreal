@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Specialized;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core.stubs
@@ -8,6 +10,12 @@ namespace nothinbutdotnetstore.web.core.stubs
         {
             return new StubRequest();
         }
-        class StubRequest : ApplicationRequest {}
+        class StubRequest : ApplicationRequest {
+            public NameValueCollection Params
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
+            }
+        }
     }
 }
