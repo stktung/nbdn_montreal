@@ -13,6 +13,7 @@ namespace nothinbutdotnetstore.web.core.stubs
 
             return new StubRequest("NoName");
         }
+
         class StubRequest : ApplicationRequest {
             public string command_name { get; set; }
 

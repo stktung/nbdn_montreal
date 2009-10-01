@@ -79,6 +79,7 @@
     <Compile Include="web\ApplicationRequestCommandSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
+    <Compile Include="web\RequestFactorySpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
     <Compile Include="web\ViewMainDepartmentSpecificationSpecs.cs" />
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
