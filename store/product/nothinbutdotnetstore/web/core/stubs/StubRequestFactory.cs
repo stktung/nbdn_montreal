@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core.stubs
@@ -15,23 +14,17 @@ namespace nothinbutdotnetstore.web.core.stubs
             return new StubRequest("NoName");
         }
         class StubRequest : ApplicationRequest {
-             string name;
+            public string command_name { get; set; }
 
             public StubRequest(string name)
             {
-                this.name = name; 
+                this.command_name = name; 
             }
 
 
             public InputModel map<InputModel>()
             {
                 return default(InputModel);
-            }
-
-            public string command_name
-            {
-                get { return name; }
-                set { name = value; }
             }
         }
     }

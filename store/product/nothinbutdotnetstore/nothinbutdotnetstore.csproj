@@ -49,9 +49,11 @@
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
+    <Compile Include="infrastructure\RequestCommandIsNamed.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
+    <Compile Include="web\core\ApplicationRequestSpecifications.cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
     <Compile Include="web\core\BasicCommandRegistry.cs" />
     <Compile Include="web\core\BasicFrontController.cs" />
