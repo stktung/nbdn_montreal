@@ -6,10 +6,11 @@ using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.core;
 using Rhino.Mocks;
+using developwithpassion.bdd.mocking.rhino;
 
 namespace nothinbutdotnetstore.tests.web
 {
-    public class ViewDepartmentsCommandSpecs
+    public class ViewMainDepartmentsSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
                                             ViewMainDepartments> {}
@@ -34,7 +35,7 @@ namespace nothinbutdotnetstore.tests.web
 
             it should_tell_the_response_engine_to_display_the_main_departments_in_the_store = () =>
             {
-                response_engine.display(department_list);
+                response_engine.received(engine => engine.display(department_list));
             };
 
             static ApplicationRequest request;
