@@ -1,4 +1,3 @@
-using System;
 using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.infrastructure
@@ -14,17 +13,7 @@ namespace nothinbutdotnetstore.infrastructure
 
         public bool is_satisfied_by(ApplicationRequest item)
         {
-            var url_segments = item.raw_url.Split(new[] {'/'});
-
-            foreach (var url_segment in url_segments)
-            {
-                if (expected_file_name.Equals(url_segment, StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return item.raw_url.Contains(expected_file_name);
         }
     }
 }

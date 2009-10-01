@@ -1,4 +1,3 @@
-using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core.stubs
@@ -7,18 +6,15 @@ namespace nothinbutdotnetstore.web.core.stubs
     {
         public ApplicationRequest create_from(HttpContext http_context)
         {
-            if (http_context.Request.RawUrl.Contains("ViewMainDepartments"))
-            {
-                return new StubRequest("ViewMainDepartments");
-            }
-
-            return new StubRequest("NoName");
+            return new StubRequest(http_context);
         }
+
         class StubRequest : ApplicationRequest {
-            
-            public StubRequest(string raw_url)
+            HttpContext http_context;
+
+            public StubRequest(HttpContext http_context)
             {
-                this.raw_url     = raw_url;
+                this.http_context = http_context;
             }
 
 
@@ -29,8 +25,7 @@ namespace nothinbutdotnetstore.web.core.stubs
 
             public string raw_url
             {
-                get { throw new NotImplementedException(); }
-                set { throw new NotImplementedException(); }
+                get { return http_context.Request.RawUrl; }
             }
         }
     }
