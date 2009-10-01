@@ -33,14 +33,14 @@ namespace nothinbutdotnetstore.tests.web
                 request_factory = the_dependency<RequestFactory>();
 
                 http_context = ObjectMother.create_http_context();
-                request = new object();
+                request = an<ApplicationRequest>();
 
                 request_factory.Stub(factory => factory.create_from(http_context))
                     .Return(request);
             };
 
             static FrontController front_controller;
-            static object request;
+            static ApplicationRequest request;
             static HttpContext http_context;
             static RequestFactory request_factory;
         }

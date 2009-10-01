@@ -2,6 +2,6 @@ namespace nothinbutdotnetstore.web.core
 {
     public interface FrontController
     {
-        void process(object o);
+        void process(ApplicationRequest request);
     }
 }

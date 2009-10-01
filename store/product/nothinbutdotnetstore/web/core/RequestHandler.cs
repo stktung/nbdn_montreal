@@ -1,12 +1,11 @@
-using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core
 {
     public class RequestHandler : IHttpHandler
     {
-        private FrontController controller;
-        private RequestFactory factory;
+        FrontController controller;
+        RequestFactory factory;
 
         public RequestHandler(FrontController controller, RequestFactory factory)
         {
@@ -21,7 +20,7 @@ namespace nothinbutdotnetstore.web.core
 
         public bool IsReusable
         {
-            get { throw new NotImplementedException(); }
+            get { return true; }
         }
     }
 }
