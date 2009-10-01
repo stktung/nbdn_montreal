@@ -1,4 +1,4 @@
-param($message,$working_branch,$branch_to_merge="development")
+param($message,$working_branch="master",$branch_to_merge="development")
 
 . .\git_utils.ps1
 
