@@ -1,5 +1,8 @@
 using System.Web.UI;
 
-public class Store : MasterPage
+namespace nothinbutdotnetstore.web.ui.views
 {
+    public class Store : MasterPage
+    {
+    }
 }
