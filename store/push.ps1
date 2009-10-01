@@ -2,9 +2,8 @@ param($message,$working_branch,$branch_to_merge="development")
 
 . .\git_utils.ps1
 
-commit($message)
+commit -message $message
 merge -working_branch $working_branch -branch_to_merge $branch_to_merge
-
-push($working_branch)
+push -branch $working_branch
 
 
