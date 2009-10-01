@@ -1,6 +1,4 @@
-using nothinbutdotnetstore.web.core;
-
-namespace nothinbutdotnetstore.tests.web
+namespace nothinbutdotnetstore.web.core
 {
     public class BasicFrontController : FrontController
     {

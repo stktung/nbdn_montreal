@@ -1,7 +1,4 @@
-using developwithpassion.bdd.core.commands;
-using nothinbutdotnetstore.web.core;
-
-namespace nothinbutdotnetstore.tests.web
+namespace nothinbutdotnetstore.web.core
 {
     public interface CommandRegistry
     {
