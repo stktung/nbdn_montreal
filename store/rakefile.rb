@@ -71,7 +71,7 @@ desc 'run the tests for the project'
 task :test, :category_to_exclude, :needs => [:compile] do |t,args|
   puts Project.startup_dir
   args.with_defaults(:category_to_exclude => 'SLOW')
-  runner = MbUnitRunner.new :compile_target => COMPILE_TARGET, :category_to_exclude => args.category_to_exclude, :show_report => false
+  runner = MbUnitRunner.new :compile_target => COMPILE_TARGET, :category_to_exclude => args.category_to_exclude, :show_report => true, :report_type => 'TEXT'
   runner.execute_tests ["#{Project.tests_dir}"]
 end
 
