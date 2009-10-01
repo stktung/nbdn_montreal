@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
+    <Compile Include="dto\ProductItem.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
@@ -69,7 +70,7 @@
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
     <Compile Include="web\core\ViewMainDepartments.cs" />
-    <Compile Include="web\core\ViewSubDepartments.cs" />
+    <Compile Include="web\core\ViewSubDepartmentsOrProducts.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
