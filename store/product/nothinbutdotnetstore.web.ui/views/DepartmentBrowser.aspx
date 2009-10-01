@@ -1,9 +1,9 @@
 <%@ MasterType VirtualPath="Store.master" %>
 <%@ Page Language="C#" AutoEventWireup="true" 
 Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
+<%@ Import Namespace="nothinbutdotnetstore.web.application"%>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="nothinbutdotnetstore.dto" %>
-<%@ Import Namespace="nothinbutdotnetstore.web.core" %>
 <asp:Content ID="content" runat="server" ContentPlaceHolderID="childContentPlaceHolder">
     <p class="ListHead">Select An Isle</p>
 
@@ -14,7 +14,7 @@ Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 %>
         	<tr class="ListItem">
                		 <td>                     
-                  <a href='<%= typeof(ViewSubDepartmentsOrProducts).Name %>.store'><%=department.name%></a>
+                  <a href='<%= typeof(ViewProductBrowser).Name %>.store?'<% department.id %>><%=department.name%></a>
                 	</td>
            	 </tr>        
            	 

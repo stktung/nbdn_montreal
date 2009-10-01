@@ -4,5 +4,6 @@ namespace nothinbutdotnetstore.web.core
     {
         InputModel map<InputModel>();
         string raw_url { get; }
+        string id { get; }
     }
 }

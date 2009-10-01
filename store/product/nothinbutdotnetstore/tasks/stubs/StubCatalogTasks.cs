@@ -30,5 +30,10 @@ namespace nothinbutdotnetstore.tasks.stubs
             Random rand = new Random();
             return rand.Next(10) < 5 ? true : false;
         }
+
+        public DepartmentItem get_department_by_id(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
