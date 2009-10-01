@@ -3,6 +3,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.web.core;
+using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
 {
@@ -28,13 +29,13 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
             it should_not_be_satisfied_if_the_file_name_does_not_match = () =>
             {
-                request.raw_url = "http://mywebserver/theWrongFileName";
+                request.Stub(x => x.raw_url).Return("http://mywebserver/theWrongFileName");
                 sut.is_satisfied_by(request).should_be_false();
             };
 
             it should_be_satisfied_if_the_request_contains_the_expected_file_name = () =>
             {
-                request.raw_url = "http://mywebserver/theExpectedFileName";
+                request.Stub(x => x.raw_url).Return("http://mywebserver/theExpectedFileName");
                 sut.is_satisfied_by(request).should_be_true();
             };
 

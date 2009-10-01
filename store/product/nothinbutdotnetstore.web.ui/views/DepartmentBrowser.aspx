@@ -3,6 +3,7 @@
 Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 <%@ Import Namespace="System.Collections.Generic" %>
 <%@ Import Namespace="nothinbutdotnetstore.dto" %>
+<%@ Import Namespace="nothinbutdotnetstore.web.core" %>
 <asp:Content ID="content" runat="server" ContentPlaceHolderID="childContentPlaceHolder">
     <p class="ListHead">Select An Isle</p>
 
@@ -13,7 +14,7 @@ Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 %>
         	<tr class="ListItem">
                		 <td>                     
-                  <%=department.name%>
+                  <a href='<%= typeof(ViewSubDepartments).Name %>.store'><%=department.name%></a>
                 	</td>
            	 </tr>        
            	 

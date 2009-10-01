@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using nothinbutdotnetstore.web.core.dsl;
 
 namespace nothinbutdotnetstore.web.core
 {
@@ -12,11 +13,11 @@ namespace nothinbutdotnetstore.web.core
         static IEnumerable<ApplicationRequestCommand> create_default_commands()
         {
             yield return new BasicApplicationRequestCommand(
-                ApplicationRequestSpecifications.has_a_command_name_equal_to("ViewMainDepartment"),
+                Request.has_a_url_that_contains_the_command<ViewMainDepartments>(),
                 new ViewMainDepartments());
 
             yield return new BasicApplicationRequestCommand(
-                ApplicationRequestSpecifications.has_a_command_name_equal_to("ViewSubDepartment"),
+                Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
                 new ViewSubDepartments());
         }
 
