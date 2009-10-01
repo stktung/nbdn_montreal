@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.web.core
     {
         public bool is_satisfied_by(ApplicationRequest item)
         {
-            return item.CommandName == "ViewMainDepartments";
+            return item.command_name == "ViewMainDepartments";
         }
     }
 }

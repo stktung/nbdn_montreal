@@ -28,7 +28,7 @@ namespace nothinbutdotnetstore.web.core.stubs
                 return default(InputModel);
             }
 
-            public string CommandName
+            public string command_name
             {
                 get { return name; }
                 set { name = value; }

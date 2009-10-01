@@ -17,7 +17,7 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 request = an<ApplicationRequest>();
-                request.CommandName = "ViewMainDepartments";
+                request.command_name = "ViewMainDepartments";
             };
 
             because b = () =>
