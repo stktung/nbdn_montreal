@@ -30,10 +30,10 @@ namespace nothinbutdotnetstore.tests.web
             context c = () =>
             {
                 front_controller = the_dependency<FrontController>();
+                request_factory = the_dependency<RequestFactory>();
+
                 http_context = ObjectMother.create_http_context();
                 request = new object();
-
-                request_factory = the_dependency<RequestFactory>();
 
                 request_factory.Stub(factory => factory.create_from(http_context))
                     .Return(request);
