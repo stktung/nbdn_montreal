@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using nothinbutdotnetstore.infrastructure.stubs;
-using nothinbutdotnetstore.web.core.stubs;
 
 namespace nothinbutdotnetstore.web.core
 {
@@ -10,13 +8,13 @@ namespace nothinbutdotnetstore.web.core
     {
         IEnumerable<ApplicationRequestCommand> all_commands;
 
-        public BasicCommandRegistry():this(create_default_commands()) {}
+        public BasicCommandRegistry() : this(create_default_commands()) {}
 
         static IEnumerable<ApplicationRequestCommand> create_default_commands()
         {
             yield return new BasicApplicationRequestCommand(
                 new AlwaysSatisfied<ApplicationRequest>(),
-                new FakeCommand());
+                new ViewDepartmentsCommand());
         }
 
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)

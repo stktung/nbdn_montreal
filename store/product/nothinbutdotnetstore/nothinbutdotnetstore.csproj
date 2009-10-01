@@ -61,6 +61,7 @@
     <Compile Include="web\core\BasicApplicationRequestCommand.cs" />
     <Compile Include="web\core\stubs\FakeCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
+    <Compile Include="web\core\ViewDepartmentsCommand.cs" />
     <Compile Include="web\core\ViewDepartmentsRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
