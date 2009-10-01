@@ -2,18 +2,18 @@ using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.infrastructure
 {
-    public class RequestHasSpecificCommandName : Specification<ApplicationRequest>
+    public class RequestHasSpecificFileName : Specification<ApplicationRequest>
     {
-        string expected_command_name;
+        string expected_file_name;
 
-        public RequestHasSpecificCommandName(string expected_command_name)
+        public RequestHasSpecificFileName(string expected_file_name)
         {
-            this.expected_command_name = expected_command_name;
+            this.expected_file_name = expected_file_name;
         }
 
         public bool is_satisfied_by(ApplicationRequest item)
         {
-            return item.command_name == expected_command_name;
+            return item.raw_url.Contains(expected_file_name);
         }
     }
 }
