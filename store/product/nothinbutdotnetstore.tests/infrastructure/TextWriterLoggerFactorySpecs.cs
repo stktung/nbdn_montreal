@@ -24,8 +24,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
             it should_return_a_text_writer_logger = () =>
             {
                 logger.should_be_an<TextWriterLogger>();
-
-                Log.an().informational("message works");
             };
 
             static Logger logger;

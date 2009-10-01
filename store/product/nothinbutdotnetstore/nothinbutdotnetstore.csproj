@@ -53,8 +53,6 @@
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
-    <Compile Include="web\core\BasicApplicationRequest.cs" />
-    <Compile Include="web\core\BasicApplicationRequestFactory.cs" />
     <Compile Include="web\core\BasicCommandRegistry.cs" />
     <Compile Include="web\core\BasicFrontController.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
@@ -69,7 +67,6 @@
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
     <Compile Include="web\core\ViewMainDepartments.cs" />
-    <Compile Include="web\core\ViewDepartmentsRequest.cs" />
     <Compile Include="web\core\ViewSubDepartments.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

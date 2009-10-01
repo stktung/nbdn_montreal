@@ -23,10 +23,14 @@ namespace nothinbutdotnetstore.tests.web
          {
              context c = () =>
              {
+                 request = an<ApplicationRequest>();
                  catalog_tasks = the_dependency<CatalogTasks>();
                  response_engine = the_dependency<ResponseEngine>();
-                 someDepartment = an<DepartmentItem>();
-                 catalog_tasks.Stub(x => x.get_sub_departments_for(someDepartment)).Return(department_list);
+                 some_department = an<DepartmentItem>();
+
+                 catalog_tasks.Stub(x => x.get_sub_departments_for(some_department)).Return(department_list);
+
+                 request.Stub(application_request => application_request.map<DepartmentItem>()).Return(some_department);
              };
              because b = () =>
              {
@@ -37,14 +41,13 @@ namespace nothinbutdotnetstore.tests.web
              it should_tell_the_response_engine_to_display_the_content = () =>
              {
                response_engine.received(engine => engine.display(department_list));  
-                  
              };
 
              static ApplicationRequest request;
              static ResponseEngine response_engine;
              static IEnumerable<DepartmentItem> department_list;
              static CatalogTasks catalog_tasks;
-             static DepartmentItem someDepartment;
+             static DepartmentItem some_department;
          }
      }
  }

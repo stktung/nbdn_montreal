@@ -15,6 +15,10 @@ namespace nothinbutdotnetstore.web.core
             yield return new BasicApplicationRequestCommand(
                 new AlwaysSatisfied<ApplicationRequest>(),
                 new ViewMainDepartments());
+
+            yield return new BasicApplicationRequestCommand(
+                new AlwaysSatisfied<ApplicationRequest>(),
+                new ViewSubDepartments());
         }
 
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)
