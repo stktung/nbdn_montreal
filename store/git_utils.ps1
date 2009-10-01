@@ -1,4 +1,4 @@
-function merge($working_branch = "master",$branch_to_merge)
+function merge($working_branch,$branch_to_merge)
 {
   git checkout $working_branch
   git merge $branch_to_merge
