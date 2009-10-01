@@ -1,7 +1,12 @@
-if ($args.length -ne 1)
+param($remote,$remote_branch="master",$branch_to_pull_to="development")
+
+. .\git_utils.ps1
+
+if ($remote -eq $null)
 {
   "Usage -- pull [remotename]"
   exit
 }
-git checkout development
-git pull $args[0] master
+commit
+git checkout -b $branch_to_pull_to
+git pull $remote $remote_branch

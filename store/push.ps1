@@ -1,12 +1,9 @@
-if ($args.length -eq 0)
-{
-  "Please provide a commit message"
-  exit
-}
+param($message,$working_branch,$branch_to_merge="development")
 
-git add -A
-git commit -m $args[0]
-git checkout master
-git merge development
-git push origin master
-git checkout development
+. .\git_utils.ps1
+
+commit($message)
+merge($working_branch,$branch_to_merge)
+push($working_branch)
+
+
