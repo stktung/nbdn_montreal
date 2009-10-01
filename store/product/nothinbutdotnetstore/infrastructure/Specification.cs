@@ -1,3 +1,5 @@
+using System;
+
 namespace nothinbutdotnetstore.infrastructure
 {
     public interface Specification<T>

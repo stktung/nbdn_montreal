@@ -13,7 +13,7 @@ namespace nothinbutdotnetstore.web.core
         static IEnumerable<ApplicationRequestCommand> create_default_commands()
         {
             yield return new BasicApplicationRequestCommand(
-                new AlwaysSatisfied<ApplicationRequest>(),
+                new ViewMainDepartmentSpecification(),
                 new ViewMainDepartments());
 
             yield return new BasicApplicationRequestCommand(

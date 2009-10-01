@@ -68,6 +68,7 @@
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
     <Compile Include="web\core\ViewMainDepartments.cs" />
     <Compile Include="web\core\ViewSubDepartments.cs" />
+    <Compile Include="web\core\ViewMainDepartmentSpecification.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
