@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
+    <Compile Include="web\core\ApplicationRequestCommand .cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestHandler.cs" />

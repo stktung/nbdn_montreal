@@ -4,7 +4,7 @@ namespace nothinbutdotnetstore.tests.web
 {
     public class BasicFrontController : FrontController
     {
-        readonly CommandRegistry command_registry;
+        CommandRegistry command_registry;
 
         public BasicFrontController(CommandRegistry command_registry)
         {
@@ -13,7 +13,7 @@ namespace nothinbutdotnetstore.tests.web
 
         public void process(ApplicationRequest request)
         {
-            command_registry.Lookup(request);
+            command_registry.find_command_that_can_process(request).process(request);
         }
     }
 }
