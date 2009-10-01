@@ -25,3 +25,7 @@ function push($branch)
   git push origin $branch
 }
 
+function pull($remote,$remote_branch,$branch_to_pull_to)
+{
+}
+
