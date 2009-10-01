@@ -9,4 +9,5 @@ if ($remote -eq $null)
 }
 
 commit
-pull($remote,$remote_branch,$branch_to_pull_to)
+
+pull -remote $remote -remote_branch $remote_branch -branch_to_pull_to $branch_to_pull_to
