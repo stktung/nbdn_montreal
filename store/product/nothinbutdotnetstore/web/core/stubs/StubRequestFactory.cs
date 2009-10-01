@@ -14,6 +14,12 @@ namespace nothinbutdotnetstore.web.core.stubs
             {
                 throw new NotImplementedException();
             }
+
+            public string command_name
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
+            }
         }
     }
 }
