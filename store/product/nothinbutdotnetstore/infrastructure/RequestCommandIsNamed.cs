@@ -1,7 +1,8 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using nothinbutdotnetstore.dto;
 using nothinbutdotnetstore.tasks;
+using nothinbutdotnetstore.tasks.stubs;
 using nothinbutdotnetstore.web.core;
 
 namespace nothinbutdotnetstore.infrastructure
@@ -22,18 +23,20 @@ namespace nothinbutdotnetstore.infrastructure
     }
 
 
-    public class IfItHasProducts : Specification<ApplicationRequest>
+    public class DepartmentHasProducts : Specification<ApplicationRequest>
     {
         CatalogTasks tasks;
-        
-        public IfItHasProducts(CatalogTasks tasks)
+
+        public DepartmentHasProducts():this(new StubCatalogTasks()) {}
+
+        public DepartmentHasProducts(CatalogTasks tasks)
         {
             this.tasks = tasks;
         }
 
         public bool is_satisfied_by(ApplicationRequest item)
         {
-            return tasks.has_any_products(tasks.get_department_by_id(item.id)); 
+            return tasks.has_any_products(item.map<DepartmentItem>());
         }
     }
 
@@ -64,14 +67,7 @@ namespace nothinbutdotnetstore.infrastructure
 
         public bool is_satisfied_by(T item)
         {
-            foreach (var specification in specifications)
-            {
-                if (!specification.is_satisfied_by(item))
-                {
-                    return false;
-                }
-            }
-            return true;
+            return specifications.All(specification => specification.is_satisfied_by(item));
         }
     }
 }

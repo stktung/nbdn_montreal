@@ -14,7 +14,7 @@ Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
 %>
         	<tr class="ListItem">
                		 <td>                     
-                  <a href='<%= typeof(ViewProductBrowser).Name %>.store?'<% department.id %>><%=department.name%></a>
+                  <a href='<%= typeof(ViewProductBrowser).Name %>.store?id=<%=department.id %>'><%=department.name%></a>
                 	</td>
            	 </tr>        
            	 
