@@ -8,5 +8,4 @@ if ($remote -eq $null)
   exit
 }
 commit
-git checkout -b $branch_to_pull_to
-git pull $remote $remote_branch
+pull($remote,$remote_branch,$branch_to_pull_to)
