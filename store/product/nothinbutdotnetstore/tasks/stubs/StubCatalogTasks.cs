@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using nothinbutdotnetstore.dto;
 
-namespace nothinbutdotnetstore.tasks
+namespace nothinbutdotnetstore.tasks.stubs
 {
     public class StubCatalogTasks : CatalogTasks
     {

@@ -49,7 +49,7 @@
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
-    <Compile Include="tasks\StubCatalogTasks.cs" />
+    <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
