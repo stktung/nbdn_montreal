@@ -1,3 +1,4 @@
+using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core.stubs
@@ -14,17 +15,22 @@ namespace nothinbutdotnetstore.web.core.stubs
             return new StubRequest("NoName");
         }
         class StubRequest : ApplicationRequest {
-            public string command_name { get; set; }
-
-            public StubRequest(string name)
+            
+            public StubRequest(string raw_url)
             {
-                this.command_name = name; 
+                this.raw_url     = raw_url;
             }
 
 
             public InputModel map<InputModel>()
             {
                 return default(InputModel);
+            }
+
+            public string raw_url
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
             }
         }
     }
