@@ -2,6 +2,7 @@ namespace nothinbutdotnetstore.web.core
 {
     public interface ApplicationRequestCommand 
     {
-        void process(ApplicationRequest some_request);
+        void process(ApplicationRequest request);
+        bool can_handle(ApplicationRequest request);
     }
 }
