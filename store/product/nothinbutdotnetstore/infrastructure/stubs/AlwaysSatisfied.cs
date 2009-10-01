@@ -1,5 +1,3 @@
-using System;
-
 namespace nothinbutdotnetstore.infrastructure.stubs
 {
     public class AlwaysSatisfied<T> : Specification<T>

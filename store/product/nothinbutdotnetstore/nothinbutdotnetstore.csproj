@@ -45,23 +45,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
+    <Compile Include="tasks\StubCatalogTasks.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
     <Compile Include="web\core\BasicCommandRegistry.cs" />
     <Compile Include="web\core\BasicFrontController.cs" />
+    <Compile Include="tasks\CatalogTasks.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\MissingCommand.cs" />
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestHandler.cs" />
     <Compile Include="web\core\BasicApplicationRequestCommand.cs" />
+    <Compile Include="web\core\ResponseEngine .cs" />
     <Compile Include="web\core\stubs\FakeCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
-    <Compile Include="web\core\ViewDepartmentsCommand.cs" />
+    <Compile Include="web\core\stubs\StubResponseEngine.cs" />
+    <Compile Include="web\core\ViewMainDepartments.cs" />
     <Compile Include="web\core\ViewDepartmentsRequest.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

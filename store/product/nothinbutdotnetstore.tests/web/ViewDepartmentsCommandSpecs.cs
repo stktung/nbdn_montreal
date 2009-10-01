@@ -1,8 +1,9 @@
 using System.Collections.Generic;
-using System.Web;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
+using nothinbutdotnetstore.dto;
+using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.web.core;
 using Rhino.Mocks;
 
@@ -11,17 +12,18 @@ namespace nothinbutdotnetstore.tests.web
     public class ViewDepartmentsCommandSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
-                                            ViewDepartmentsCommand> {}
+                                            ViewMainDepartments> {}
 
-        [Concern(typeof (ViewDepartmentsCommand))]
+        [Concern(typeof (ViewMainDepartments))]
         public class when_command_is_processed : concern
         {
             context c = () =>
             {
-                departmentList = new List<string> {"foo", "bar"};
-                service = the_dependency<Service>();
-                departmentView = the_dependency<DepartmentView>();
-                service.Stub(x => x.GetDepartments()).Return(departmentList);
+                request = an<ApplicationRequest>();
+                department_list = new List<DepartmentItem>();
+                catalog_tasks = the_dependency<CatalogTasks>();
+                response_engine = the_dependency<ResponseEngine>();
+                catalog_tasks.Stub(x => x.get_all_main_departments()).Return(department_list);
             };
 
             because b = () =>
@@ -30,15 +32,15 @@ namespace nothinbutdotnetstore.tests.web
             };
 
 
-            it should_get_a_list_of_departments_and_push_to_view = () =>
+            it should_tell_the_response_engine_to_display_the_main_departments_in_the_store = () =>
             {
-                departmentView.Departments.should_contain(departmentList.ToArray());
+                response_engine.display(department_list);
             };
 
             static ApplicationRequest request;
-            static DepartmentView departmentView;
-            static Service service;
-            static List<string> departmentList;
+            static CatalogTasks catalog_tasks;
+            static IEnumerable<DepartmentItem> department_list;
+            static ResponseEngine response_engine;
         }
     }
 

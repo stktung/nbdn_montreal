@@ -1,5 +1,3 @@
-using nothinbutdotnetstore.web.core;
-
 namespace nothinbutdotnetstore.infrastructure
 {
     public interface Specification<T>
