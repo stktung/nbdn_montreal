@@ -10,7 +10,7 @@ function commit($message)
   if ($message -eq $null)
   {
     git commit
-    exit;
+    return
   }
   git commit -m $message
 }
@@ -20,7 +20,7 @@ function push($branch)
   if ($branch -eq $null)
   {
     git push
-    exit;
+    return
   }
   git push origin $branch
 }

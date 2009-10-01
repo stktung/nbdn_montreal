@@ -7,5 +7,6 @@ if ($remote -eq $null)
   "Usage -- pull [remotename]"
   exit
 }
+
 commit
 pull($remote,$remote_branch,$branch_to_pull_to)
