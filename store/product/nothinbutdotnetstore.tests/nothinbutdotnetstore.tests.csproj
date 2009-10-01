@@ -75,9 +75,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
-    <Compile Include="web\CommandRegistrySpecs.cs" />
-    <Compile Include="web\FrontControllerSpecs.cs" />
-    <Compile Include="web\RequestHandlerSpecs.cs" />
+    <Compile Include="vthe\ApplicationRequestCommandSpecs.cs" />
+    <Compile Include="vthe\CommandRegistrySpecs.cs" />
+    <Compile Include="vthe\FrontControllerSpecs.cs" />
+    <Compile Include="vthe\RequestHandlerSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">
