@@ -21,7 +21,6 @@ namespace nothinbutdotnetstore.web.application
         }
 
         public void process(ApplicationRequest request)
-
         {
             response_engine.display(catalog_tasks.get_sub_departments_for(request.map<DepartmentItem>()));
         }

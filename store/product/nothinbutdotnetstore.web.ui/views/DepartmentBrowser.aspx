@@ -11,7 +11,7 @@ Inherits="nothinbutdotnetstore.web.ui.views.DepartmentBrowser" CodeFile="Departm
 		          {%>
         	<tr class="ListItem">
                		 <td>                     
-                  <a href='<%=typeof (ViewSubDepartments).Name%>.store'><%=department.name%></a>
+                  <a href='<%= %>'><%=department.name%></a>
                 	</td>
            	 </tr>        
            	 

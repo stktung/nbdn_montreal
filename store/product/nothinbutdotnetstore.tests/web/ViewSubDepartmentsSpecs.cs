@@ -11,10 +11,10 @@ using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
 {
-    public class ViewSubDepartmentSpecs
+    public class ViewSubDepartmentsSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
-                                            ViewProductBrowser>
+                                            ViewSubDepartments>
         {
         }
 
@@ -24,10 +24,12 @@ namespace nothinbutdotnetstore.tests.web
         {
             context c = () =>
             {
+                department_list = new List<DepartmentItem>();
                 request = an<ApplicationRequest>();
                 catalog_tasks = the_dependency<CatalogTasks>();
                 response_engine = the_dependency<ResponseEngine>();
                 some_department = an<DepartmentItem>();
+
                 request.Stub(application_request => application_request.map<DepartmentItem>()).Return(some_department);
                 catalog_tasks.Stub(x => x.get_sub_departments_for(some_department)).Return(department_list);
             };
