@@ -8,7 +8,7 @@ Inherits="nothinbutdotnetstore.web.ui.views.DepartmentBrowser" CodeFile="Departm
 		      <% foreach (var department in this.model) {%>
         	<tr class="ListItem">
                		 <td>                     
-                      <a href='<%= %>'><%=department.name%></a>
+                      <a href='Blah.store'><%=department.name%></a>
                 	</td>
        	 </tr>        
            	 

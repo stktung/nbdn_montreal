@@ -1,4 +1,5 @@
 using System;
+using developwithpassion.commons.core.infrastructure.containers;
 
 namespace nothinbutdotnetstore.tasks.startup
 {
@@ -7,6 +8,7 @@ namespace nothinbutdotnetstore.tasks.startup
         static public void go()
         {
             throw new NotImplementedException();
+
         }
     }
 }
