@@ -32,7 +32,7 @@ namespace nothinbutdotnetstore.tests.web
                     return page;
                 };
                 provide_a_basic_sut_constructor_argument(list_of_views);
-                provide_a_basic_sut_constructor_argument(view_factory);
+                change(() => BasicViewRegistry.view_factory).to(view_factory);
             };
 
 
