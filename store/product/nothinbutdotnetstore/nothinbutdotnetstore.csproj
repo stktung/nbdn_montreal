@@ -47,15 +47,22 @@
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\ChainedCommand.cs" />
+    <Compile Include="infrastructure\CommandExtensions.cs" />
     <Compile Include="infrastructure\CompoundSpecification.cs" />
     <Compile Include="infrastructure\containers\BasicContainer.cs" />
     <Compile Include="infrastructure\containers\BasicTypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\DependencyNotRegisteredException.cs" />
     <Compile Include="infrastructure\containers\TypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\TypeResolutionException.cs" />
+    <Compile Include="infrastructure\StringExtensions.cs" />
+    <Compile Include="tasks\startup\ConfigureApplicationCommands.cs" />
+    <Compile Include="tasks\startup\StartupCommandConvention.cs" />
+    <Compile Include="tasks\startup\StartupCommandConventionViolationException.cs" />
     <Compile Include="infrastructure\EnumerableExtensions.cs" />
     <Compile Include="infrastructure\Command.cs" />
     <Compile Include="tasks\startup\BasicContainerConfiguration.cs" />
+    <Compile Include="tasks\startup\BasicStartupCommandFactory.cs" />
     <Compile Include="tasks\startup\ConfigurationContainer.cs" />
     <Compile Include="tasks\startup\ConfigureRequestToCommandRouting.cs" />
     <Compile Include="tasks\startup\ConfigureFrontController.cs" />
@@ -63,6 +70,7 @@
     <Compile Include="tasks\startup\StartApplication.cs" />
     <Compile Include="tasks\startup\ContainerConfiguration.cs" />
     <Compile Include="tasks\startup\StartupCommand.cs" />
+    <Compile Include="tasks\startup\StartupCommandFactory.cs" />
     <Compile Include="tasks\startup\StartupCommandPipe.cs" />
     <Compile Include="web\application\DepartmentHasProducts.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />

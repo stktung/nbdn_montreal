@@ -1,13 +1,11 @@
-using System;
-
 namespace nothinbutdotnetstore.tasks.startup
 {
     public class StartApplication
     {
-        static public StartupCommandPipe with<T>() where T : StartupCommand
+        static public StartupCommandPipe with<StartupCommandType>() where StartupCommandType : StartupCommand
         {
-            return new StartupCommandPipe(typeof (T),
-                                          new BasicContainerConfiguration());
+            return new StartupCommandPipe(typeof (StartupCommandType),
+                                          new BasicStartupCommandFactory());
         }
     }
 }

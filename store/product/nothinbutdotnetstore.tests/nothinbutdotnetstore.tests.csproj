@@ -77,6 +77,9 @@
     <Compile Include="infrastructure\TextWriterLoggerSpecs.cs" />
     <Compile Include="infrastructure\TypeInstanceResolverSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tasks\StartupCommandConventionSpecs.cs" />
+    <Compile Include="tasks\StartupCommandFactorySpecs.cs" />
+    <Compile Include="tasks\StartupCommandPipeSpecs.cs" />
     <Compile Include="tasks\StartupSpecs.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />

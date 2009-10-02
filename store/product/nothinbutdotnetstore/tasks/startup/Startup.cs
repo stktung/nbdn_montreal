@@ -7,6 +7,7 @@ namespace nothinbutdotnetstore.tasks.startup
             StartApplication.with<ConfigurationContainer>()
                 .followed_by<ConfigureServiceLayer>()
                 .followed_by<ConfigureFrontController>()
+                .followed_by<ConfigureApplicationCommands>()
                 .finished_by<ConfigureRequestToCommandRouting>();
         }
 
