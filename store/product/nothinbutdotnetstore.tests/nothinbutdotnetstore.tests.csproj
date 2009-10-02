@@ -75,6 +75,7 @@
     <Compile Include="infrastructure\BasicContainerSpecs.cs" />
     <Compile Include="infrastructure\TextWriterLoggerFactorySpecs.cs" />
     <Compile Include="infrastructure\TextWriterLoggerSpecs.cs" />
+    <Compile Include="infrastructure\TypeInstanceResolverSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="utility\empty_test_fixture_for_test_driven.cs" />
     <Compile Include="utility\ObjectMother.cs" />
