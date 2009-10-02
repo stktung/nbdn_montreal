@@ -12,27 +12,22 @@ namespace nothinbutdotnetstore.tests.infrastructure
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<Container,
                                             BasicContainer> {
+                                                context c = () =>
+                                                {
+                                                    types = new Dictionary<Type, Type>();
+                                                    types.Add(typeof(MyInterface), typeof(MyImplementation));
+                                                    provide_a_basic_sut_constructor_argument(types);
 
-            context c = () =>
-            {
-                types = new Dictionary<Type, object>();
-                provide_a_basic_sut_constructor_argument(types);
-            };
+                                                };
 
-            static protected IDictionary<Type, object> types;
+                                                static protected Dictionary<Type, Type> types;
+           
                                             }
 
         [Concern(typeof (BasicContainer))]
         public class when_resolving_an_implementation_of_an_dependency_and_the_dependency_has_been_configured : concern
         {
-            context c = () =>
-            {
-                implementation = new MyImplementation();
-
-                types.Add(typeof(MyInterface), implementation);
-                
-            };
-
+            
             because b = () =>
             {
                 result = sut.instance_of<MyInterface>();
@@ -41,11 +36,10 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
             it should_should_give_back_an_implementation_of_the_dependency = () => 
             {
-                result.should_be_equal_to(implementation);
+                result.should_be_an_instance_of<MyImplementation>();
             };
 
             static MyInterface result;
-            static object implementation;
         }
 
         [Concern(typeof (BasicContainer))]
