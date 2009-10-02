@@ -9,10 +9,6 @@ namespace nothinbutdotnetstore.web.core
         IDictionary<Type, Type> view_models_to_views;
         ViewFactory view_factory = (path,type) => BuildManager.CreateInstanceFromVirtualPath(path, type);
 
-        public BasicViewRegistry()
-        {
-        }
-
         public BasicViewRegistry(IDictionary<Type, Type> view_models_to_views, ViewFactory view_factory)
         {
             this.view_models_to_views = view_models_to_views;
