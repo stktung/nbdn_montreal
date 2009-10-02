@@ -18,7 +18,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
             context c = () =>
             {
                 types = new Dictionary<Type, Type>();
-                types.Add(typeof (MyInterface), typeof (MyImplementation));
                 provide_a_basic_sut_constructor_argument(types);
             };
 
@@ -28,6 +27,11 @@ namespace nothinbutdotnetstore.tests.infrastructure
         [Concern(typeof (BasicContainer))]
         public class when_resolving_an_implementation_of_an_dependency_and_the_dependency_has_been_configured : concern
         {
+            context c = () =>
+            {
+                types.Add(typeof (MyInterface), typeof (MyImplementation));
+            };
+
             because b = () =>
             {
                 result = sut.instance_of<MyInterface>();
@@ -61,6 +65,11 @@ namespace nothinbutdotnetstore.tests.infrastructure
         [Concern(typeof (BasicContainer))]
         public class when_resovling_an_implementation_of_an_dependency_with_dependencies : concern
         {
+            context c = () =>
+            {
+                types.Add(typeof(MyInterfaceWithDependencies),typeof(MyInterfaceWithDependenciesImpl));
+            };
+
             because b = () =>
             {
                 result = sut.instance_of<MyInterfaceWithDependencies>();
@@ -69,7 +78,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
             it should_return_the_item_with_all_of_its_dependencies = () =>
             {
-                result.should_not_be_an_instance_of<MyInterfaceWithDependenciesImpl>();
+                result.should_be_an_instance_of<MyInterfaceWithDependenciesImpl>();
             };
 
             static MyInterfaceWithDependencies result;
