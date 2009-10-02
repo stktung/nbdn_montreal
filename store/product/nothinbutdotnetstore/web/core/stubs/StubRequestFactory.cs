@@ -6,26 +6,26 @@ namespace nothinbutdotnetstore.web.core.stubs
     {
         public ApplicationRequest create_from(HttpContext http_context)
         {
-            if (http_context.Request.RawUrl.Contains("ViewMainDepartments"))
-            {
-                return new StubRequest("ViewMainDepartments");
-            }
-
-            return new StubRequest("NoName");
+            return new StubRequest(http_context);
         }
 
         class StubRequest : ApplicationRequest {
-            public string command_name { get; set; }
+            HttpContext http_context;
 
-            public StubRequest(string name)
+            public StubRequest(HttpContext http_context)
             {
-                this.command_name = name; 
+                this.http_context = http_context;
             }
 
 
             public InputModel map<InputModel>()
             {
                 return default(InputModel);
+            }
+
+            public string raw_url
+            {
+                get { return http_context.Request.RawUrl; }
             }
         }
     }

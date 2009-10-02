@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Web.Compilation;
 using developwithpassion.bdd.contexts;
 using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdd.mocking.rhino;
@@ -10,24 +11,24 @@ using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
 {
-    public class ViewSubDepartmentSpecs
+    public class ViewProductsInDepartmentSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
-                                            ViewSubDepartments> {}
+                                            ViewProductsInDepartment> {}
 
-        [Concern(typeof (ViewSubDepartments))]
+        [Concern(typeof (ViewProductsInDepartment))]
         public class when_command_is_processed : concern
         {
             context c = () =>
             {
                 request = an<ApplicationRequest>();
+                some_department = an<DepartmentItem>();
+                product_list = new List<ProductItem>();
+                
                 catalog_tasks = the_dependency<CatalogTasks>();
                 response_engine = the_dependency<ResponseEngine>();
-                some_department = an<DepartmentItem>();
-
-                catalog_tasks.Stub(x => x.get_sub_departments_for(some_department)).Return(department_list);
-
                 request.Stub(application_request => application_request.map<DepartmentItem>()).Return(some_department);
+                catalog_tasks.Stub(x => x.get_products_for(some_department)).Return(product_list);
             };
 
             because b = () =>
@@ -35,16 +36,15 @@ namespace nothinbutdotnetstore.tests.web
                 sut.process(request);
             };
 
-
             it should_tell_the_response_engine_to_display_the_content = () =>
             {
-                response_engine.received(engine => engine.display(department_list));
+                response_engine.received(engine => engine.display(product_list));
             };
 
             static ApplicationRequest request;
-            static ResponseEngine response_engine;
-            static IEnumerable<DepartmentItem> department_list;
+            static IEnumerable<ProductItem> product_list;
             static CatalogTasks catalog_tasks;
+            static ResponseEngine response_engine;
             static DepartmentItem some_department;
         }
     }

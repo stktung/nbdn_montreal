@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
+    <Compile Include="dto\ProductItem.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
@@ -53,7 +54,9 @@
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
-    <Compile Include="web\core\ApplicationRequestSpecifications.cs" />
+    <Compile Include="web\core\BasicResponseEngine.cs" />
+    <Compile Include="web\core\BasicViewRegistry.cs" />
+    <Compile Include="web\core\dsl\Request.cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
     <Compile Include="web\core\BasicCommandRegistry.cs" />
     <Compile Include="web\core\BasicFrontController.cs" />
@@ -70,8 +73,9 @@
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
     <Compile Include="web\core\ViewMainDepartments.cs" />
-    <Compile Include="web\core\ViewSubDepartments.cs" />
-    <Compile Include="web\core\ViewMainDepartmentSpecification.cs" />
+    <Compile Include="web\core\ViewProductsInDepartment.cs" />
+    <Compile Include="web\core\ViewRegistry.cs" />
+    <Compile Include="web\core\ViewSubDepartmentsInDepartment.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
