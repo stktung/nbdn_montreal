@@ -1,3 +1,4 @@
+using System;
 using System.Web;
 
 namespace nothinbutdotnetstore.web.core.stubs
@@ -26,6 +27,12 @@ namespace nothinbutdotnetstore.web.core.stubs
             public string raw_url
             {
                 get { return http_context.Request.RawUrl; }
+            }
+
+            public string id
+            {
+                get { throw new NotImplementedException(); }
+                set { throw new NotImplementedException(); }
             }
         }
     }

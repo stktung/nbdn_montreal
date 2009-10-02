@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{922EF2FE-820B-4ED5-9D64-7D716E135719}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -52,6 +52,9 @@
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
     <Compile Include="infrastructure\RequestCommandIsNamed.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
+    <Compile Include="web\application\ViewMainDepartments.cs" />
+    <Compile Include="web\application\ViewProductBrowser.cs" />
+    <Compile Include="web\application\ViewSubDepartments.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
     <Compile Include="web\core\BasicResponseEngine.cs" />
@@ -61,6 +64,7 @@
     <Compile Include="web\core\BasicCommandRegistry.cs" />
     <Compile Include="web\core\BasicFrontController.cs" />
     <Compile Include="tasks\CatalogTasks.cs" />
+    <Compile Include="web\core\BasicRequestFactory.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
     <Compile Include="web\core\MissingCommand.cs" />
@@ -71,10 +75,7 @@
     <Compile Include="web\core\stubs\FakeCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
-    <Compile Include="web\core\ViewMainDepartments.cs" />
-    <Compile Include="web\core\ViewProductsInDepartment.cs" />
     <Compile Include="web\core\ViewRegistry.cs" />
-    <Compile Include="web\core\ViewSubDepartmentsInDepartment.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

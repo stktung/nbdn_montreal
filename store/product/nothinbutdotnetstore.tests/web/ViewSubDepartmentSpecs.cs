@@ -11,41 +11,52 @@ using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.web
 {
-    public class ViewProductsInDepartmentSpecs
+    public class ViewSubDepartmentSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
-                                            ViewProductBrowser> {}
+                                            ViewProductBrowser>
+        {
+            context c = () =>
+            {
+                
+            };
+        }
 
+       
         [Concern(typeof (ViewProductBrowser))]
-        public class when_command_is_processed : concern
+        public class when_command_is_processed: concern
         {
             context c = () =>
             {
                 request = an<ApplicationRequest>();
-                some_department = an<DepartmentItem>();
-                product_list = new List<ProductItem>();
-                
                 catalog_tasks = the_dependency<CatalogTasks>();
                 response_engine = the_dependency<ResponseEngine>();
+                some_department = an<DepartmentItem>();
                 request.Stub(application_request => application_request.map<DepartmentItem>()).Return(some_department);
-                catalog_tasks.Stub(x => x.get_products_for(some_department)).Return(product_list);
+                catalog_tasks.Stub(x => x.get_sub_departments_for(some_department)).Return(department_list);
             };
+
 
             because b = () =>
             {
                 sut.process(request);
             };
 
+
             it should_tell_the_response_engine_to_display_the_content = () =>
             {
-                response_engine.received(engine => engine.display(product_list));
+                response_engine.received(engine => engine.display(department_list));
             };
 
             static ApplicationRequest request;
-            static IEnumerable<ProductItem> product_list;
-            static CatalogTasks catalog_tasks;
             static ResponseEngine response_engine;
+            static IEnumerable<DepartmentItem> department_list;
+            static CatalogTasks catalog_tasks;
             static DepartmentItem some_department;
+
         }
+
+
+
     }
 }

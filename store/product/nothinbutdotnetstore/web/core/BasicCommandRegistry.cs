@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.core.dsl;
 
 namespace nothinbutdotnetstore.web.core
@@ -17,8 +18,8 @@ namespace nothinbutdotnetstore.web.core
                 new ViewMainDepartments());
 
             yield return new BasicApplicationRequestCommand(
-                Request.has_a_url_that_contains_the_command<ViewSubDepartmentsInDepartment>(),
-                new ViewSubDepartmentsInDepartment());
+                Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
+                new ViewSubDepartments());
         }
 
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)
