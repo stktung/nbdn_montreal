@@ -56,6 +56,7 @@
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
     <Compile Include="infrastructure\RequestCommandIsNamed.cs" />
+    <Compile Include="tasks\startup\Startup.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
     <Compile Include="web\application\DepartmentMapper.cs" />
     <Compile Include="web\application\ViewMainDepartments.cs" />
