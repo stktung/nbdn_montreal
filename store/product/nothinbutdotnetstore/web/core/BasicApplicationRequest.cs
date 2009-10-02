@@ -18,7 +18,7 @@ namespace nothinbutdotnetstore.web.core
         public InputModel map<InputModel>() 
         {
             return mapper_registry.get_mapper_to_map<NameValueCollection, InputModel>()
-                .map(payload);
+                                  .map(payload);
         }
 
         public string raw_url

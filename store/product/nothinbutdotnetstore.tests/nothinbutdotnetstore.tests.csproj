@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="infrastructure\ApplicationRequestSpecificationSpecs.cs" />
+    <Compile Include="infrastructure\BasicContainerSpecs.cs" />
     <Compile Include="infrastructure\TextWriterLoggerFactorySpecs.cs" />
     <Compile Include="infrastructure\TextWriterLoggerSpecs.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
