@@ -7,6 +7,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 using developwithpassion.commons.core.infrastructure.containers;
 using nothinbutdotnetstore.infrastructure.containers;
+using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
 {
@@ -17,11 +18,11 @@ namespace nothinbutdotnetstore.tests.infrastructure
         {
             context c = () =>
             {
-                types = new Dictionary<Type, Type>();
+                types = new Dictionary<Type, TypeInstanceResolver>();
                 provide_a_basic_sut_constructor_argument(types);
             };
 
-            static protected IDictionary<Type, Type> types;
+            static protected Dictionary<Type, TypeInstanceResolver> types;
         }
 
         [Concern(typeof (BasicContainer))]
@@ -29,7 +30,12 @@ namespace nothinbutdotnetstore.tests.infrastructure
         {
             context c = () =>
             {
-                types.Add(typeof (MyInterface), typeof (MyImplementation));
+                resolver= an<TypeInstanceResolver>();
+
+                resolver.Stub(instance_resolver => instance_resolver.resolve())
+                    .Return(new MyImplementation());
+
+                types.Add(typeof (MyInterface), resolver);
             };
 
             because b = () =>
@@ -44,6 +50,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
             };
 
             static MyInterface result;
+            static TypeInstanceResolver resolver;
         }
 
         [Concern(typeof (BasicContainer))]
@@ -63,25 +70,34 @@ namespace nothinbutdotnetstore.tests.infrastructure
         }
 
         [Concern(typeof (BasicContainer))]
-        public class when_resovling_an_implementation_of_an_dependency_with_dependencies : concern
+        public class when_the_type_resolver_for_a_type_throws_an_error_trying_to_resolve_a_dependency : concern
         {
             context c = () =>
             {
-                types.Add(typeof(MyInterfaceWithDependencies),typeof(MyInterfaceWithDependenciesImpl));
+                exception = new Exception();
+                resolver=an<TypeInstanceResolver>();
+
+                resolver.Stub(instance_resolver => instance_resolver.resolve())
+                    .Throw(exception);
+
+                types.Add(typeof(MyInterfaceWithDependencies),resolver);
             };
 
             because b = () =>
             {
-                result = sut.instance_of<MyInterfaceWithDependencies>();
+                doing(() => sut.instance_of<MyInterfaceWithDependencies>());
             };
 
 
-            it should_return_the_item_with_all_of_its_dependencies = () =>
+            it should_throw_an_type_resolution_exception_with_access_to_the_inner_exception = () =>
             {
-                result.should_be_an_instance_of<MyInterfaceWithDependenciesImpl>();
+                var exception_thrown = exception_thrown_by_the_sut.should_be_an_instance_of<TypeResolutionException>();
+                exception_thrown.type_that_could_not_be_resolved.should_be_equal_to(typeof(MyInterfaceWithDependencies));
+                exception_thrown.InnerException.should_be_equal_to(exception);
             };
 
-            static MyInterfaceWithDependencies result;
+            static TypeInstanceResolver resolver;
+            static Exception exception;
         }
     }
 

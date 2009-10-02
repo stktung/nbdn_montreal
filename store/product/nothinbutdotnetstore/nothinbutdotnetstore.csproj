@@ -49,6 +49,8 @@
     <Compile Include="dto\ProductItem.cs" />
     <Compile Include="infrastructure\containers\BasicContainer.cs" />
     <Compile Include="infrastructure\containers\DependencyNotRegisteredException.cs" />
+    <Compile Include="infrastructure\containers\TypeInstanceResolver.cs" />
+    <Compile Include="infrastructure\containers\TypeResolutionException.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
