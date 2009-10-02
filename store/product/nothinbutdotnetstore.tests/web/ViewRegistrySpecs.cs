@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Web;
 using developwithpassion.bdd.contexts;
@@ -17,11 +18,11 @@ namespace nothinbutdotnetstore.tests.web
         {
             context c = () =>
             {
-                list_of_views = new List<KeyValuePair<string, IHttpHandler>>();
+                list_of_views = new List<KeyValuePair<Type, IHttpHandler>>();
                 page = an<IHttpHandler>();
 
-                list_of_views.Add(new KeyValuePair<string, IHttpHandler>("Object", page));
-                provide_a_basic_sut_constructor_argument<IEnumerable<KeyValuePair<string, IHttpHandler>>>(list_of_views);
+                list_of_views.Add(new KeyValuePair<Type, IHttpHandler>(typeof(object), page));
+                provide_a_basic_sut_constructor_argument<IEnumerable<KeyValuePair<Type, IHttpHandler>>>(list_of_views);
             };
 
             because b = () =>
@@ -35,7 +36,7 @@ namespace nothinbutdotnetstore.tests.web
             };
 
             static IHttpHandler result;
-            static IList<KeyValuePair<string, IHttpHandler>> list_of_views;
+            static IList<KeyValuePair<Type, IHttpHandler>> list_of_views;
             static IHttpHandler page;
         }
     }
