@@ -15,6 +15,11 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public Dependency instance_of<Dependency>()
         {
+            if (!types.ContainsKey(typeof (Dependency)))
+            {
+                throw new DependencyNotRegisteredException(typeof (Dependency));
+            }
+
             return (Dependency) types[typeof (Dependency)];
         }
 
