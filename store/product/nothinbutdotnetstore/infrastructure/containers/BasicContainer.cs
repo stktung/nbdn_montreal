@@ -6,29 +6,34 @@ namespace nothinbutdotnetstore.infrastructure.containers
 {
     public class BasicContainer : Container
     {
-        IDictionary<Type, Type> types;
+        IDictionary<Type, TypeInstanceResolver> types;
 
-        public BasicContainer(IDictionary<Type, Type> types)
+        public BasicContainer(IDictionary<Type, TypeInstanceResolver> types)
         {
             this.types = types;
         }
 
         public Dependency instance_of<Dependency>()
         {
-            ensure_type_is_registered_for<Dependency>();
-
-            return (Dependency) Activator.CreateInstance(types[typeof (Dependency)]);
+            return (Dependency) instance_of(typeof (Dependency));
         }
 
         public object instance_of(Type dependency_type)
         {
-            throw new NotImplementedException();
+            ensure_resolver_is_registered_for(dependency_type);
+            try
+            {
+                return types[dependency_type].resolve();
+            }
+            catch (Exception exception) {
+                throw new TypeResolutionException(dependency_type, exception);
+            }
         }
 
-        void ensure_type_is_registered_for<Dependency>()
+        void ensure_resolver_is_registered_for(Type dependency_type)
         {
-            if (!types.ContainsKey(typeof (Dependency)))
-                throw new DependencyNotRegisteredException(typeof (Dependency));
+            if (!types.ContainsKey(dependency_type))
+                throw new DependencyNotRegisteredException(dependency_type);
         }
 
         public IEnumerable<DependencyType> all_instances_of<DependencyType>()

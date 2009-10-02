@@ -22,7 +22,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
                 provide_a_basic_sut_constructor_argument(types);
             };
 
-            static protected Dictionary<Type, TypeInstanceResolver> types;
+            static protected IDictionary<Type, TypeInstanceResolver> types;
         }
 
         [Concern(typeof (BasicContainer))]
@@ -54,11 +54,39 @@ namespace nothinbutdotnetstore.tests.infrastructure
         }
 
         [Concern(typeof (BasicContainer))]
+        public class when_resolving_an_implementation_by_requesting_its_type : concern
+        {
+            context c = () =>
+            {
+                resolver= an<TypeInstanceResolver>();
+
+                resolver.Stub(instance_resolver => instance_resolver.resolve())
+                    .Return(new MyImplementation());
+
+                types.Add(typeof (MyInterface), resolver);
+            };
+
+            because b = () =>
+            {
+                result = sut.instance_of(typeof (MyInterface));
+            };
+
+
+            it should_should_give_back_an_implementation_of_the_dependency = () =>
+            {
+                result.should_be_an_instance_of<MyImplementation>();
+            };
+
+            static object result;
+            static TypeInstanceResolver resolver;
+        }
+
+        [Concern(typeof (BasicContainer))]
         public class when_resolving_an_implementation_of_a_dependency_and_there_is_no_dependency : concern
         {
             because b = () =>
             {
-                doing(() => sut.instance_of<MyInterface>());
+                doing(() => sut.instance_of<MyImplementation>());
             };
 
 
