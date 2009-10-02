@@ -52,12 +52,17 @@
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
     <Compile Include="infrastructure\RequestCommandIsNamed.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
+    <Compile Include="web\application\DepartmentMapper.cs" />
     <Compile Include="web\application\ViewMainDepartments.cs" />
     <Compile Include="web\application\ViewProductBrowser.cs" />
     <Compile Include="web\application\ViewSubDepartments.cs" />
     <Compile Include="web\core\ApplicationRequest.cs" />
     <Compile Include="web\core\ApplicationRequestCommand .cs" />
+    <Compile Include="web\core\BasicApplicationRequest.cs" />
     <Compile Include="web\core\BasicResponseEngine.cs" />
+    <Compile Include="web\core\BasicViewForModel.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="web\core\BasicViewRegistry.cs" />
     <Compile Include="web\core\dsl\Request.cs" />
     <Compile Include="web\core\ApplicationWebCommand.cs" />
@@ -67,6 +72,8 @@
     <Compile Include="web\core\BasicRequestFactory.cs" />
     <Compile Include="web\core\CommandRegistry.cs" />
     <Compile Include="web\core\FrontController.cs" />
+    <Compile Include="web\core\Mapper.cs" />
+    <Compile Include="web\core\MapperRegistry.cs" />
     <Compile Include="web\core\MissingCommand.cs" />
     <Compile Include="web\core\RequestFactory.cs" />
     <Compile Include="web\core\RequestHandler.cs" />
@@ -75,6 +82,9 @@
     <Compile Include="web\core\stubs\FakeCommand.cs" />
     <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubResponseEngine.cs" />
+    <Compile Include="web\core\TransferAction.cs" />
+    <Compile Include="web\core\ViewFactory.cs" />
+    <Compile Include="web\core\ViewForModel.cs" />
     <Compile Include="web\core\ViewRegistry.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

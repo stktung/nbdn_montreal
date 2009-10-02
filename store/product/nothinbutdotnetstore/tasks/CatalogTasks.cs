@@ -9,5 +9,6 @@ namespace nothinbutdotnetstore.tasks
         IEnumerable<DepartmentItem> get_sub_departments_for(DepartmentItem department);
         IEnumerable<ProductItem> get_products_for(DepartmentItem department);
         bool has_any_products(DepartmentItem department);
+        IEnumerable<DepartmentItem> get_all_departments();
     }
 }

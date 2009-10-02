@@ -16,10 +16,6 @@ namespace nothinbutdotnetstore.tests.web
         public abstract class concern : observations_for_a_sut_with_a_contract<ApplicationWebCommand,
                                             ViewProductBrowser>
         {
-            context c = () =>
-            {
-                
-            };
         }
 
        

@@ -1,34 +1,30 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Compilation;
-using System.Web.UI;
-using nothinbutdotnetstore.dto;
 
 namespace nothinbutdotnetstore.web.core
 {
     public class BasicViewRegistry : ViewRegistry
     {
-        IEnumerable<KeyValuePair<Type, IHttpHandler>> list_of_views;
+        IDictionary<Type, Type> view_models_to_views;
+        ViewFactory view_factory = (path,type) => BuildManager.CreateInstanceFromVirtualPath(path, type);
 
-        public BasicViewRegistry() : this(create_default_list_of_views()) {}
-
-        static IEnumerable<KeyValuePair<Type, IHttpHandler>> create_default_list_of_views()
+        public BasicViewRegistry()
         {
-            yield return new KeyValuePair<Type, IHttpHandler>(typeof(IEnumerable<DepartmentItem>), BuildManager.CreateInstanceFromVirtualPath("~/views/DepartmentBrowser.aspx", typeof (Page)) as Page);
-            yield return new KeyValuePair<Type, IHttpHandler>(typeof(IEnumerable<ProductItem>), BuildManager.CreateInstanceFromVirtualPath("~/views/ProductBrowser.aspx", typeof(IHttpHandler)) as IHttpHandler);
         }
 
-        public BasicViewRegistry(IEnumerable<KeyValuePair<Type, IHttpHandler>> list_of_views)
+        public BasicViewRegistry(IDictionary<Type, Type> view_models_to_views, ViewFactory view_factory)
         {
-            this.list_of_views = list_of_views;
+            this.view_models_to_views = view_models_to_views;
+            this.view_factory = view_factory;
         }
 
-        public IHttpHandler find_view_that_can_process<Model>()
+        public ViewForModel<Model> find_view_that_can_process<Model>()
         {
-            var list = new List<KeyValuePair<Type, IHttpHandler>>(list_of_views);
-            return list.First(pair => pair.Key.Equals(typeof (Model))).Value;
+            var view_type = view_models_to_views[typeof (Model)];
+
+            return (ViewForModel<Model>)view_factory(string.Format("~/views/{0}.aspx", view_type.Name),
+                                typeof (ViewForModel<Model>));
         }
     }
 }
