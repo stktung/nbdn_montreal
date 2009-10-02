@@ -78,12 +78,12 @@
     <Compile Include="utility\ObjectMother.cs" />
     <Compile Include="web\ApplicationRequestCommandSpecs.cs" />
     <Compile Include="web\CommandRegistrySpecs.cs" />
-    <Compile Include="web\RequestHasSpecificIdSpec.cs" />
-    <Compile Include="web\ViewProductBrowserSpecs.cs" />
     <Compile Include="web\FrontControllerSpecs.cs" />
     <Compile Include="web\RequestHandlerSpecs.cs" />
+    <Compile Include="web\ResponseEngineSpecs.cs" />
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
-    <Compile Include="web\ViewSubDepartmentSpecs.cs" />
+    <Compile Include="web\ViewProductsInDepartmentSpecs.cs" />
+    <Compile Include="web\ViewRegistrySpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">

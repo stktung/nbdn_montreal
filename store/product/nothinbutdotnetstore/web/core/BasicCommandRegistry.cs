@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.web.application;
 using nothinbutdotnetstore.web.core.dsl;
 
@@ -14,19 +13,13 @@ namespace nothinbutdotnetstore.web.core
 
         static IEnumerable<ApplicationRequestCommand> create_default_commands()
         {
-            yield return new BasicApplicationRequestCommand(Request.compound_specification(
-                                                                Request.has_a_url_that_contains_the_command<ViewProductBrowser>(),
-                                                                new DepartmentHasProducts()),
-                                                            new ViewProductBrowser());
-
             yield return new BasicApplicationRequestCommand(
                 Request.has_a_url_that_contains_the_command<ViewMainDepartments>(),
                 new ViewMainDepartments());
 
-
             yield return new BasicApplicationRequestCommand(
-                Request.has_a_url_that_contains_the_command<ViewProductBrowser>(),
-                new ViewProductBrowser());
+                Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
+                new ViewSubDepartments());
         }
 
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)
