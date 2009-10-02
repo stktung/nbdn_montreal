@@ -15,24 +15,17 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public Dependency instance_of<Dependency>()
         {
-            return (Dependency) instance_of(typeof (Dependency));
+            return (Dependency) types[typeof (Dependency)];
         }
 
         public object instance_of(Type dependency_type)
         {
-            object obj;
-            if (types.TryGetValue(dependency_type, out obj))
-            {
-                return obj;
-            }
-
-            return null;
+            throw new NotImplementedException();
         }
 
         public IEnumerable<DependencyType> all_instances_of<DependencyType>()
         {
             throw new NotImplementedException();
         }
-
     }
 }
