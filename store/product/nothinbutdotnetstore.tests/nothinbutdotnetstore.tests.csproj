@@ -86,7 +86,7 @@
     <Compile Include="web\ViewMainDepartmentsSpecs.cs" />
     <Compile Include="web\ViewProductsInDepartmentSpecs.cs" />
     <Compile Include="web\ViewRegistrySpecs.cs" />
-    <Compile Include="web\ViewSubDepartmentSpecs.cs" />
+    <Compile Include="web\ViewSubDepartmentsSpecs.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\nothinbutdotnetstore\nothinbutdotnetstore.csproj">
