@@ -1,10 +1,9 @@
 using nothinbutdotnetstore.dto;
-using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.tasks.stubs;
 using nothinbutdotnetstore.web.core;
 
-namespace nothinbutdotnetstore.web.application
+namespace nothinbutdotnetstore.infrastructure
 {
     public class DepartmentHasProducts : Specification<ApplicationRequest>
     {
