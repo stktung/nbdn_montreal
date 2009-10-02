@@ -1,3 +1,4 @@
+ using System.Data;
  using developwithpassion.bdd.contexts;
  using developwithpassion.bdd.harnesses.mbunit;
  using developwithpassion.bdddoc.core;
@@ -24,7 +25,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
 
              because b = () =>
              {
-        
+                 result = sut.instance_of<IDbConnection>(); 
              };
 
         
@@ -34,6 +35,8 @@ namespace nothinbutdotnetstore.tests.infrastructure
             
             
              };
+
+             static IDbConnection result;
          }
      }
  }

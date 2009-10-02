@@ -3,9 +3,6 @@ namespace nothinbutdotnetstore.web.core
     public class BasicFrontController : FrontController
     {
         CommandRegistry command_registry;
-        public BasicFrontController() : this(new BasicCommandRegistry())
-        {
-        }
 
         public BasicFrontController(CommandRegistry command_registry)
         {

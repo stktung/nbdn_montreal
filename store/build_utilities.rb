@@ -117,7 +117,8 @@ class MbUnitRunner
 	end
 
   def build_command_line_for(assembly)
-			file = File.expand_path("#{@source_dir}/#{assembly}/bin/#{@compile_target}/#{assembly}.dll")
+			file = File.expand_path("#{@test_results_dir
+      }/#{assembly}.dll")
       "#{@mbunit_dir}/mbunit.cons.exe #{file} /rt:#{@report_type} /rnf:#{assembly}.dll-results /rf:#{@test_results_dir} #{'/sr' if @show_report} /ec:#{@category_to_exclude}"
   end
 end
@@ -131,7 +132,7 @@ class MSBuildRunner
 		framework_dir = File.join(ENV['windir'].dup, 'Microsoft.NET', 'Framework', 'v3.5')
 		msbuild_file = File.join(framework_dir, 'msbuild.exe')
 		
-		sh "#{msbuild_file} #{solution_file} /property:Configuration=#{compile_target} /t:Rebuild"
+		sh "#{msbuild_file} #{solution_file} /property:Configuration=#{compile_target} /property:OutDir=../../artifacts/ /t:Build"
 	end
 end
 
