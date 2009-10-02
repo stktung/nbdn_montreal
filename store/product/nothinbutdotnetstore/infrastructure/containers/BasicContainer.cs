@@ -6,9 +6,16 @@ namespace nothinbutdotnetstore.infrastructure.containers
 {
     public class BasicContainer : Container
     {
+        IDictionary<Type, object> types;
+
+        public BasicContainer(IDictionary<Type, object> types)
+        {
+            this.types = types;
+        }
+
         public Dependency instance_of<Dependency>()
         {
-            throw new NotImplementedException();
+            return (Dependency) types[typeof (Dependency)];
         }
 
         public object instance_of(Type dependency_type)

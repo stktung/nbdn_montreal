@@ -25,7 +25,7 @@ Inherits="System.Web.UI.Page" MasterPageFile="Store.master" %>
                     </td>
                     <td>Replace with product description</td>
                     <td><input type="text" class="normalTextBox" value="1" /></td>
-                    <td>Replace with the price of the product</td>               
+                    <td>Replace with the price of the product</td>
                     <td><input type="checkbox" class="normalCheckBox" /></td>
                     <td><asp:button id="addToCartButton" runat="server" Text="Add To cart"/></td>
                 </tr>
