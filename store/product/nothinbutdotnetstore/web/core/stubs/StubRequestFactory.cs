@@ -29,7 +29,8 @@ namespace nothinbutdotnetstore.web.core.stubs
                 get { return http_context.Request.RawUrl; }
             }
 
-            public string id
+            public long id
+                
             {
                 get { throw new NotImplementedException(); }
                 set { throw new NotImplementedException(); }

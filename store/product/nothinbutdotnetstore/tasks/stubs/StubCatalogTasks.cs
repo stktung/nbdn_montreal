@@ -30,5 +30,9 @@ namespace nothinbutdotnetstore.tasks.stubs
             return rand.Next(10) < 5 ? true : false;
         }
 
+        public IEnumerable<DepartmentItem> get_all_departments()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

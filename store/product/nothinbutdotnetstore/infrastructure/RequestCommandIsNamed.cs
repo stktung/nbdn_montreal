@@ -27,7 +27,7 @@ namespace nothinbutdotnetstore.infrastructure
     {
         CatalogTasks tasks;
 
-        public DepartmentHasProducts():this(new StubCatalogTasks()) {}
+        public DepartmentHasProducts() : this(new StubCatalogTasks()) {}
 
         public DepartmentHasProducts(CatalogTasks tasks)
         {
@@ -37,22 +37,6 @@ namespace nothinbutdotnetstore.infrastructure
         public bool is_satisfied_by(ApplicationRequest item)
         {
             return tasks.has_any_products(item.map<DepartmentItem>());
-        }
-    }
-
-
-    public class RequestHasSpecificId : Specification<ApplicationRequest>
-    {
-        string id;
-
-        public RequestHasSpecificId(string id)
-        {
-            this.id = id;
-        }
-
-        public bool is_satisfied_by(ApplicationRequest item)
-        {
-            return item.id == id;
         }
     }
 
