@@ -17,8 +17,8 @@ namespace nothinbutdotnetstore.web.core
                 new ViewMainDepartments());
 
             yield return new BasicApplicationRequestCommand(
-                Request.has_a_url_that_contains_the_command<ViewSubDepartmentsOrProducts>(),
-                new ViewSubDepartmentsOrProducts());
+                Request.has_a_url_that_contains_the_command<ViewSubDepartmentsInDepartment>(),
+                new ViewSubDepartmentsInDepartment());
         }
 
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)
