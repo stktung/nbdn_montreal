@@ -4,16 +4,13 @@ Inherits="nothinbutdotnetstore.web.ui.views.DepartmentBrowser" CodeFile="Departm
 <%@ Import Namespace="nothinbutdotnetstore.web.application" %>
 <asp:Content ID="content" runat="server" ContentPlaceHolderID="childContentPlaceHolder">
     <p class="ListHead">Select An Isle</p>
-
-            <table>            
-		      <%
-		          foreach (var department in this.model)
-		          {%>
+      <table>            
+		      <% foreach (var department in this.model) {%>
         	<tr class="ListItem">
                		 <td>                     
-                  <a href='<%= %>'><%=department.name%></a>
+                      <a href='<%= %>'><%=department.name%></a>
                 	</td>
-           	 </tr>        
+       	 </tr>        
            	 
            	 <%
 		          }%>
