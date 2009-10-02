@@ -22,7 +22,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
                 provide_a_basic_sut_constructor_argument(types);
             };
 
-            static protected Dictionary<Type, TypeInstanceResolver> types;
+            static protected IDictionary<Type, TypeInstanceResolver> types;
         }
 
         [Concern(typeof (BasicContainer))]
@@ -58,7 +58,7 @@ namespace nothinbutdotnetstore.tests.infrastructure
         {
             because b = () =>
             {
-                doing(() => sut.instance_of<MyInterface>());
+                doing(() => sut.instance_of<MyImplementation>());
             };
 
 
