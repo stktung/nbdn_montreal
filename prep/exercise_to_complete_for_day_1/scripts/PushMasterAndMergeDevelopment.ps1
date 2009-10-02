@@ -1,0 +1,4 @@
+git checkout master
+commitsync
+push
+mergedevelopmentfrommaster
