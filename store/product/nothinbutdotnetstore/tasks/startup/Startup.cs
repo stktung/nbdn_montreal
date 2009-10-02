@@ -13,10 +13,24 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         static public void go()
         {
-            configure_container();
-            configure_service_layer();
             configure_front_controller();
+            configure_service_layer();
             configure_commands();
+        }
+
+        static private void configure_front_controller() {
+            var resolvers = new ResolverFactory();
+            var config = new Dictionary<Type, TypeInstanceResolver>();
+            Container startup_container = new BasicContainer(config);
+            IOC.initialize_with(startup_container);
+
+            var commands = configure_commands();
+
+            var front_controller_resolver = resolvers.create(() => new BasicFrontController(new BasicCommandRegistry(commands)));
+            var request_factory_resolver = resolvers.create(() => new BasicRequestFactory());
+
+            config.Add(typeof (RequestFactory), request_factory_resolver);
+            config.Add(typeof (FrontController), front_controller_resolver);
         }
 
         static List<ApplicationRequestCommand> configure_commands()
