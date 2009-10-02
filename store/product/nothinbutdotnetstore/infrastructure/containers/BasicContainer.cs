@@ -6,9 +6,9 @@ namespace nothinbutdotnetstore.infrastructure.containers
 {
     public class BasicContainer : Container
     {
-        IDictionary<Type, object> types;
+        IDictionary<Type, Type> types;
 
-        public BasicContainer(IDictionary<Type, object> types)
+        public BasicContainer(IDictionary<Type, Type> types)
         {
             this.types = types;
         }
@@ -17,7 +17,7 @@ namespace nothinbutdotnetstore.infrastructure.containers
         {
             ensure_type_is_registered_for<Dependency>();
 
-            return (Dependency) types[typeof (Dependency)];
+            return (Dependency) Activator.CreateInstance(types[typeof (Dependency)]);
         }
 
         public object instance_of(Type dependency_type)
