@@ -13,45 +13,45 @@ namespace nothinbutdotnetstore.tasks.startup
     {
         static public void go()
         {
+            var resolvers = new ResolverFactory();
             var config = new Dictionary<Type, TypeInstanceResolver>();
             Container startup_container = new BasicContainer(config);
             IOC.initialize_with(startup_container);
 
-            var resolvers = new ResolverFactory();
-            var commands = new List<ApplicationRequestCommand>();
+            var commands = configure_commands();
+
             var front_controller_resolver = resolvers.create(() => new BasicFrontController(new BasicCommandRegistry(commands)));
             var request_factory_resolver = resolvers.create(() => new BasicRequestFactory());
-            var catalog_tasks = new StubCatalogTasks();
-
-            var view_model_to_views = new Dictionary<Type, Type>();
-
-            var response_engine = new BasicResponseEngine(new BasicViewRegistry(view_model_to_views));
-
-            commands.Add(new BasicApplicationRequestCommand(
-                             Request.has_a_url_that_contains_the_command<ViewMainDepartments>(),
-                             new ViewMainDepartments(catalog_tasks, response_engine)));
-
-
-            commands.Add(new BasicApplicationRequestCommand(Request.compound_specification(
-                                                                Request.has_a_url_that_contains_the_command<ViewProductBrowser>(),
-                                                                new DepartmentHasProducts(catalog_tasks)), new ViewProductBrowser(catalog_tasks, response_engine)));
-
-
-            commands.Add(new BasicApplicationRequestCommand(
-                             Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
-                             new ViewSubDepartments(catalog_tasks, response_engine)));
-
 
             config.Add(typeof (RequestFactory), request_factory_resolver);
             config.Add(typeof (FrontController), front_controller_resolver);
         }
-    }
 
-    public class ResolverFactory
-    {
-        public TypeInstanceResolver create(Func<object> factory)
+        static List<ApplicationRequestCommand> configure_commands()
         {
-            return new BasicTypeInstanceResolver(factory);
+            var catalog_tasks = new StubCatalogTasks();
+            var view_model_to_views = new Dictionary<Type, Type>();
+            var response_engine = new BasicResponseEngine(new BasicViewRegistry(view_model_to_views));
+
+            return new List<ApplicationRequestCommand>
+                   {
+                       new BasicApplicationRequestCommand(
+                           Request.has_a_url_that_contains_the_command<ViewMainDepartments>(),
+                           new ViewMainDepartments(catalog_tasks, response_engine)),
+                       new BasicApplicationRequestCommand(Request.compound_specification(
+                                                              Request.has_a_url_that_contains_the_command<ViewProductBrowser>(),
+                                                              new DepartmentHasProducts(catalog_tasks)), new ViewProductBrowser(catalog_tasks, response_engine)),
+                       new BasicApplicationRequestCommand(
+                           Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
+                           new ViewSubDepartments(catalog_tasks, response_engine))
+                   };
+        }
+
+        public class ResolverFactory
+        {
+            public TypeInstanceResolver create(Func<object> factory)
+            {
+                return new BasicTypeInstanceResolver(factory);
+            }
         }
     }
-}
