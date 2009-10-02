@@ -3,6 +3,7 @@ using developwithpassion.bdd.harnesses.mbunit;
 using developwithpassion.bdddoc.core;
 using nothinbutdotnetstore.infrastructure;
 using nothinbutdotnetstore.web.core;
+using nothinbutdotnetstore.web.core.dsl;
 using Rhino.Mocks;
 
 namespace nothinbutdotnetstore.tests.infrastructure
@@ -10,13 +11,13 @@ namespace nothinbutdotnetstore.tests.infrastructure
     public class ApplicationRequestSpecificationSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<Specification<ApplicationRequest>,
-                                            RequestHasSpecificFileName>
+                                            RequestContainsFileName>
         {
             protected static bool result;
             protected static ApplicationRequest request;
         }
 
-        [Concern(typeof (RequestHasSpecificFileName))]
+        [Concern(typeof (RequestContainsFileName))]
         public class when_determining_whether_it_is_satisfied_by_a_request : concern
         {
             context c = () =>

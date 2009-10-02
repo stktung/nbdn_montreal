@@ -47,15 +47,17 @@
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\CompoundSpecification.cs" />
     <Compile Include="infrastructure\containers\BasicContainer.cs" />
     <Compile Include="infrastructure\containers\BasicTypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\DependencyNotRegisteredException.cs" />
     <Compile Include="infrastructure\containers\TypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\TypeResolutionException.cs" />
+    <Compile Include="web\application\DepartmentHasProducts.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
-    <Compile Include="infrastructure\RequestCommandIsNamed.cs" />
+    <Compile Include="web\core\dsl\RequestContainsFileName.cs" />
     <Compile Include="tasks\startup\Startup.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
     <Compile Include="web\application\DepartmentMapper.cs" />
