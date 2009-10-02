@@ -15,12 +15,20 @@ namespace nothinbutdotnetstore.infrastructure.containers
 
         public Dependency instance_of<Dependency>()
         {
+            ensure_type_is_registered_for<Dependency>();
+
             return (Dependency) types[typeof (Dependency)];
         }
 
         public object instance_of(Type dependency_type)
         {
             throw new NotImplementedException();
+        }
+
+        void ensure_type_is_registered_for<Dependency>()
+        {
+            if (!types.ContainsKey(typeof (Dependency)))
+                throw new DependencyNotRegisteredException(typeof (Dependency));
         }
 
         public IEnumerable<DependencyType> all_instances_of<DependencyType>()

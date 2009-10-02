@@ -27,7 +27,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
         {
             context c = () =>
             {
-
                 implementation = new MyImplementation();
 
                 types.Add(typeof(MyInterface), implementation);
@@ -63,8 +62,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
                 exception_thrown_by_the_sut.should_be_an_instance_of<DependencyNotRegisteredException>()
                                            .type_that_could_not_be_resolved.should_be_equal_to(typeof(MyImplementation));
             };
-
-            static MyInterface result;
         }
     }
 
