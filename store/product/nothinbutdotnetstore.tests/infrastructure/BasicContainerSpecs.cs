@@ -27,7 +27,6 @@ namespace nothinbutdotnetstore.tests.infrastructure
         {
             context c = () =>
             {
-
                 implementation = new MyImplementation();
 
                 types.Add(typeof(MyInterface), implementation);
