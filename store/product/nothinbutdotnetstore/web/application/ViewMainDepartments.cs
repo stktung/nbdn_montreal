@@ -1,8 +1,9 @@
 using nothinbutdotnetstore.tasks;
 using nothinbutdotnetstore.tasks.stubs;
+using nothinbutdotnetstore.web.core;
 using nothinbutdotnetstore.web.core.stubs;
 
-namespace nothinbutdotnetstore.web.core
+namespace nothinbutdotnetstore.web.application
 {
     public class ViewMainDepartments : ApplicationWebCommand
     {
