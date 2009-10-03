@@ -10,8 +10,6 @@ namespace nothinbutdotnetstore.web.application
     {
         CatalogTasks tasks;
 
-        public DepartmentHasProducts() : this(new StubCatalogTasks()) {}
-
         public DepartmentHasProducts(CatalogTasks tasks)
         {
             this.tasks = tasks;

@@ -7,7 +7,6 @@ namespace nothinbutdotnetstore.web.core
     {
         IEnumerable<ApplicationRequestCommand> all_commands;
 
-
         public BasicCommandRegistry(IEnumerable<ApplicationRequestCommand> all_commands)
         {
             this.all_commands = all_commands;

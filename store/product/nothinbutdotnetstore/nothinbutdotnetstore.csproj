@@ -47,16 +47,39 @@
   <ItemGroup>
     <Compile Include="dto\DepartmentItem.cs" />
     <Compile Include="dto\ProductItem.cs" />
+    <Compile Include="infrastructure\ChainedCommand.cs" />
+    <Compile Include="infrastructure\CommandExtensions.cs" />
     <Compile Include="infrastructure\CompoundSpecification.cs" />
     <Compile Include="infrastructure\containers\BasicContainer.cs" />
     <Compile Include="infrastructure\containers\BasicTypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\DependencyNotRegisteredException.cs" />
+    <Compile Include="infrastructure\containers\ReflectiveAutoWiringResolver.cs" />
     <Compile Include="infrastructure\containers\TypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\TypeResolutionException.cs" />
+    <Compile Include="infrastructure\StringExtensions.cs" />
+    <Compile Include="tasks\startup\ConfigureApplicationCommands.cs" />
+    <Compile Include="tasks\startup\StartupCommandConvention.cs" />
+    <Compile Include="tasks\startup\StartupCommandConventionViolationException.cs" />
+    <Compile Include="infrastructure\EnumerableExtensions.cs" />
+    <Compile Include="infrastructure\Command.cs" />
+    <Compile Include="tasks\startup\BasicContainerConfiguration.cs" />
+    <Compile Include="tasks\startup\BasicStartupCommandFactory.cs" />
+    <Compile Include="tasks\startup\ConfigurationContainer.cs" />
+    <Compile Include="tasks\startup\ConfigureRequestToCommandRouting.cs" />
+    <Compile Include="tasks\startup\ConfigureFrontController.cs" />
+    <Compile Include="tasks\startup\ConfigureServiceLayer.cs" />
+    <Compile Include="tasks\startup\StartApplication.cs" />
+    <Compile Include="tasks\startup\ContainerConfiguration.cs" />
+    <Compile Include="tasks\startup\StartupCommand.cs" />
+    <Compile Include="tasks\startup\StartupCommandFactory.cs" />
+    <Compile Include="tasks\startup\StartupCommandPipe.cs" />
     <Compile Include="web\application\DepartmentHasProducts.cs" />
     <Compile Include="infrastructure\logging\TextWriterLogger.cs" />
     <Compile Include="infrastructure\Specification.cs" />
     <Compile Include="infrastructure\stubs\AlwaysSatisfied.cs" />
+    <Compile Include="web\core\ApplicationRoutes.cs" />
+    <Compile Include="web\core\BasicApplicationRoutes.cs" />
+    <Compile Include="web\core\BasicViewToViewModelRegistration.cs" />
     <Compile Include="web\core\dsl\RequestContainsFileName.cs" />
     <Compile Include="tasks\startup\Startup.cs" />
     <Compile Include="tasks\stubs\StubCatalogTasks.cs" />
@@ -94,6 +117,7 @@
     <Compile Include="web\core\ViewFactory.cs" />
     <Compile Include="web\core\ViewForModel.cs" />
     <Compile Include="web\core\ViewRegistry.cs" />
+    <Compile Include="web\core\ViewToViewModelRegistration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
