@@ -8,7 +8,7 @@ using nothinbutdotnetstore.infrastructure.containers;
 
 namespace nothinbutdotnetstore.tests.infrastructure
 {
-    public class ReflectiveAutowiringResolverSpecs
+    public class ReflectiveAutoWiringResolverSpecs
     {
         public abstract class concern : observations_for_a_sut_with_a_contract<TypeInstanceResolver,
                                             ReflectiveAutoWiringResolver> {}
