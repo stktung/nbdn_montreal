@@ -53,6 +53,7 @@
     <Compile Include="infrastructure\containers\BasicContainer.cs" />
     <Compile Include="infrastructure\containers\BasicTypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\DependencyNotRegisteredException.cs" />
+    <Compile Include="infrastructure\containers\ReflectiveAutoWiringResolver.cs" />
     <Compile Include="infrastructure\containers\TypeInstanceResolver.cs" />
     <Compile Include="infrastructure\containers\TypeResolutionException.cs" />
     <Compile Include="infrastructure\StringExtensions.cs" />

@@ -7,6 +7,8 @@ namespace nothinbutdotnetstore.tasks.startup
 {
     public class ConfigureRequestToCommandRouting : StartupCommand
     {
+        public ContainerConfiguration container_configuration { get; set; }
+
         public ConfigureRequestToCommandRouting(ContainerConfiguration container_configuration)
         {
             this.container_configuration = container_configuration;
@@ -28,7 +30,5 @@ namespace nothinbutdotnetstore.tasks.startup
             routes.add_route(Request.has_a_url_that_contains_the_command<ViewSubDepartments>(),
                 IOC.resolve.instance_of<ViewSubDepartments>());
         }
-
-        public ContainerConfiguration container_configuration { get; set; }
     }
 }

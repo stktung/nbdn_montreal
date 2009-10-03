@@ -17,6 +17,7 @@ namespace nothinbutdotnetstore.tasks.startup
         {
             configuration.register(typeof(DepartmentHasProducts),
                 configuration.create_resolver_for(() => new DepartmentHasProducts(IOC.resolve.instance_of<CatalogTasks>())));
+
             configuration.register(typeof (ViewMainDepartments),
                                    configuration.create_resolver_for(() => new ViewMainDepartments(
                                                                                IOC.resolve.instance_of<CatalogTasks>(),
