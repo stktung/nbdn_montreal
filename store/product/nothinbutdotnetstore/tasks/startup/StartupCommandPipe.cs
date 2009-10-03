@@ -11,7 +11,7 @@ namespace nothinbutdotnetstore.tasks.startup
         public StartupCommandPipe(Type initial_startup_command, StartupCommandFactory command_factory)
         {
             this.command_factory = command_factory;
-            pipeline = command_factory.create_from(initial_startup_command);
+            pipeline = this.command_factory.create_from(initial_startup_command);
         }
 
         public StartupCommandPipe followed_by<StartupPipelineCommand>() where StartupPipelineCommand : StartupCommand

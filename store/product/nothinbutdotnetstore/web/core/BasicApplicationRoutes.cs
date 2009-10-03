@@ -6,7 +6,7 @@ namespace nothinbutdotnetstore.web.core
 {
     public class BasicApplicationRoutes : ApplicationRoutes
     {
-        IList<ApplicationRequestCommand> commands;
+        IList<ApplicationRequestCommand> commands = new List<ApplicationRequestCommand>();
 
         IEnumerator IEnumerable.GetEnumerator()
         {

@@ -17,6 +17,7 @@ namespace nothinbutdotnetstore.tasks.startup
         public void run()
         {
             var routes = new BasicApplicationRoutes();
+
             var view_model_registration = new BasicViewToViewModelRegistration();
 
             container_configuration.register(typeof (ApplicationRoutes),
